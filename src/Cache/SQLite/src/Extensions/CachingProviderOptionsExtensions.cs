@@ -14,7 +14,7 @@ namespace Fetcharr.Cache.SQLite.Extensions
         /// <param name="options"><see cref="CachingProviderOptions"/>-instance to attach the provider onto.</param>
         /// <param name="name">Identifiable name of the caching provider. Must be unique.</param>
         public static CachingProviderOptions UseSQLite(this CachingProviderOptions options, string name)
-            => options.UseSQLite(name, _ => {});
+            => options.UseSQLite(name, _ => { });
 
         /// <inheritdoc cref="UseSQLite(CachingProviderOptions, string)" />
         public static CachingProviderOptions UseSQLite(

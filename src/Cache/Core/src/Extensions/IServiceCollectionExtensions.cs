@@ -34,6 +34,6 @@ namespace Fetcharr.Cache.Core.Extensions
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>-instance to register caching providers onto.</param>
         public static IServiceCollection AddCaching(this IServiceCollection services)
-            => services.AddCaching(_ => {});
+            => services.AddCaching(_ => { });
     }
 }

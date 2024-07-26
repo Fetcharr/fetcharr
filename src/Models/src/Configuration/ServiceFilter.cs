@@ -61,7 +61,7 @@ namespace Fetcharr.Models.Configuration
             {
                 ServiceFilterAllowType.ExplicitlyAllowed => 10,
                 ServiceFilterAllowType.ImplicitlyAllowed => 5,
-                _ or ServiceFilterAllowType.NotAllowed   => -100,
+                _ or ServiceFilterAllowType.NotAllowed => -100,
             };
 
         /// <inheritdoc cref="IsAllowed(IEnumerable{string})" />
@@ -71,7 +71,7 @@ namespace Fetcharr.Models.Configuration
             {
                 ServiceFilterAllowType.ExplicitlyAllowed => 10,
                 ServiceFilterAllowType.ImplicitlyAllowed => 5,
-                _ or ServiceFilterAllowType.NotAllowed   => -100,
+                _ or ServiceFilterAllowType.NotAllowed => -100,
             };
     }
 }

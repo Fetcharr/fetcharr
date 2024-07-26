@@ -145,13 +145,13 @@ namespace Fetcharr.Provider.Radarr
                 path = $"{rootFolder.Path}/{options.Folder ?? movie.Folder}",
                 minimumAvailability = (options.MinimumAvailability ?? configuration.MinimumAvailability) switch
                 {
-                    RadarrMovieStatus.TBA                   => "tba",
-                    RadarrMovieStatus.Announced             => "announced",
-                    RadarrMovieStatus.InCinemas             => "inCinemas",
-                    RadarrMovieStatus.Released              => "released",
-                    RadarrMovieStatus.Deleted               => "deleted",
+                    RadarrMovieStatus.TBA => "tba",
+                    RadarrMovieStatus.Announced => "announced",
+                    RadarrMovieStatus.InCinemas => "inCinemas",
+                    RadarrMovieStatus.Released => "released",
+                    RadarrMovieStatus.Deleted => "deleted",
 
-                    _                                       => throw new NotSupportedException()
+                    _ => throw new NotSupportedException()
                 },
                 monitored = options.Monitored ?? configuration.Monitored,
                 tags = Array.Empty<int>(),
@@ -161,11 +161,11 @@ namespace Fetcharr.Provider.Radarr
                     searchForMovie = configuration.SearchImmediately,
                     monitor = (options.MonitoredItems ?? configuration.MonitoredItems) switch
                     {
-                        RadarrMonitoredItems.None               => "none",
-                        RadarrMonitoredItems.MovieOnly          => "movieOnly",
+                        RadarrMonitoredItems.None => "none",
+                        RadarrMonitoredItems.MovieOnly => "movieOnly",
                         RadarrMonitoredItems.MovieAndCollection => "movieAndCollection",
 
-                        _                                       => throw new NotSupportedException()
+                        _ => throw new NotSupportedException()
                     }
                 }
             };

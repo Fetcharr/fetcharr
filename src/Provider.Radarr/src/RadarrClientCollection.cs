@@ -58,11 +58,11 @@ namespace Fetcharr.Provider.Radarr
         /// </summary>
         public RadarrClient? FindAppropriateClient(RadarrMovie movie) =>
             this.Select(client => new
-                {
-                    Client = client,
-                    Score = client.GetFilterScore(movie)
-                })
-                .OrderByDescending(v => v.Score)
-                .FirstOrDefault()?.Client;
+            {
+                Client = client,
+                Score = client.GetFilterScore(movie)
+            })
+            .OrderByDescending(v => v.Score)
+            .FirstOrDefault()?.Client;
     }
 }

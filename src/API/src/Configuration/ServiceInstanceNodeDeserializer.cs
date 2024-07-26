@@ -52,7 +52,7 @@ namespace Fetcharr.API.Configuration
             }
 
             List<T> result = [];
-            while (!reader.TryConsume<MappingEnd>(out _))
+            while(!reader.TryConsume<MappingEnd>(out _))
             {
                 Scalar keyScalar = reader.Consume<Scalar>();
                 T? input = nestedObjectDeserializer(reader, typeof(T)) as T;

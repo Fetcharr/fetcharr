@@ -51,12 +51,12 @@ namespace Fetcharr.Provider.Sonarr
         /// </summary>
         public SonarrClient? FindAppropriateClient(SonarrSeries series) =>
             this.Select(client => new
-                {
-                    Client = client,
-                    Score = client.GetFilterScore(series)
-                })
-                .OrderByDescending(v => v.Score)
-                .FirstOrDefault()?.Client;
+            {
+                Client = client,
+                Score = client.GetFilterScore(series)
+            })
+            .OrderByDescending(v => v.Score)
+            .FirstOrDefault()?.Client;
 
         private static IEnumerable<SonarrClient> Construct(
             FetcharrConfiguration configuration,

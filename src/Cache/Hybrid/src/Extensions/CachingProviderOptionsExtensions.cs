@@ -15,7 +15,7 @@ namespace Fetcharr.Cache.Hybrid.Extensions
         /// <param name="options"><see cref="CachingProviderOptions"/>-instance to attach the provider onto.</param>
         /// <param name="name">Identifiable name of the caching provider. Must be unique.</param>
         public static CachingProviderOptions UseHybrid(this CachingProviderOptions options, string name)
-            => options.UseHybrid(name, _ => {});
+            => options.UseHybrid(name, _ => { });
 
         /// <inheritdoc cref="UseHybrid(CachingProviderOptions, string)" />
         /// <param name="configure"></param>

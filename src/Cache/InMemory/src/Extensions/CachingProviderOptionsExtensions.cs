@@ -13,7 +13,7 @@ namespace Fetcharr.Cache.InMemory.Extensions
         /// <param name="options"><see cref="CachingProviderOptions"/>-instance to attach the provider onto.</param>
         /// <param name="name">Identifiable name of the caching provider. Must be unique.</param>
         public static CachingProviderOptions UseInMemory(this CachingProviderOptions options, string name)
-            => options.UseInMemory(name, _ => {});
+            => options.UseInMemory(name, _ => { });
 
         /// <inheritdoc cref="UseInMemory(CachingProviderOptions, string)" />
         public static CachingProviderOptions UseInMemory(

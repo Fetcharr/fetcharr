@@ -38,9 +38,9 @@ namespace Fetcharr.API.Services
                 ITaskQueue<PlexMetadataItem> queue = item.Type switch
                 {
                     WatchlistMetadataItemType.Movie => radarrMovieQueue,
-                    WatchlistMetadataItemType.Show  => sonarrSeriesQueue,
+                    WatchlistMetadataItemType.Show => sonarrSeriesQueue,
 
-                    _                               => throw new NotSupportedException()
+                    _ => throw new NotSupportedException()
                 };
 
                 await queue.EnqueueAsync(metadata, cancellationToken);

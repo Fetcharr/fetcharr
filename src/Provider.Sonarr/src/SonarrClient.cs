@@ -121,7 +121,7 @@ namespace Fetcharr.Provider.Sonarr
                             SonarrSeries s when s.Statistics.SeasonCount <= configuration.ShortSeriesThreshold
                                 => "all",
 
-                            _   => "firstSeason"
+                            _ => "firstSeason"
                         },
 
                         // Since all other enums are named after Sonarr's types,
