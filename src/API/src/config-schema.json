@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://raw.githubusercontent.com/maxnatamo/fetcharr/main/src/API/src/config-schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "plex": {
+      "$ref": "#/$defs/plex"
+    },
+    "sonarr": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "#/$defs/sonarr_service_instance"
+        }
+      }
+    },
+    "radarr": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "#/$defs/radarr_service_instance"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the instance should be considered."
+    },
+    "base_url": {
+      "type": "string",
+      "description": "The base URL of the instance. Must include both protocol, hostname, port and path."
+    },
+    "api_key": {
+      "type": "string",
+      "description": "The API key for the instance."
+    },
+    "filters": {
+      "$ref": "#/$defs/service_filter_collection"
+    },
+    "root_folder": {
+      "type": ["string", "null"],
+      "description": "Defines the path of the root folder to store items in. If not set, uses the first root folder from the instance."
+    },
+    "quality_profile": {
+      "type": ["string", "null"],
+      "description": "Defines the name of the quality profile to add items as. If not set, uses the first quality profile from the instance."
+    },
+    "monitored": {
+      "type": "boolean",
+      "default": true,
+      "description": "Defines whether the item should be monitored."
+    },
+    "search_immediately": {
+      "type": "boolean",
+      "default": true,
+      "description": "Defines whether the instance to search for the item immediately after adding it."
+    },
+    "allow_in_production": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to allow in-production series to be added to the instance.\nWhen in-production, genres and certifications are still not finalized; meaning filters likely won't work."
+    },
+    "service_filter": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Service filters limit what items can be sent to the specific instance.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "service_genre_filter": {
+      "$ref": "#/$defs/service_filter",
+      "description": "Limits what item genres can be added to the instance. Can be used to limit an instance to anime-only content.",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        "action",
+        "adventure",
+        "animation",
+        "anime",
+        "crime",
+        "drama",
+        "fantasy",
+        "food",
+        "history",
+        "horror",
+        "mystery",
+        "martial arts",
+        "romance",
+        "science fiction",
+        "sport",
+        "thriller",
+        "war",
+        "western"
+      ]
+    },
+    "service_certification_filter": {
+      "$ref": "#/$defs/service_filter",
+      "description": "Limits what certifications can be added to the instance. Can be used to limit an instance to kids-only content.",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        /* TV Parental Guidelines (US) */
+        "TV-Y",   // All children, including ages from 2-6
+        "TV-Y7",  // Directed at children age 7 and above.
+        "TV-G",   // General audience
+        "TV-PG",  // Parental guidance suggested
+        "TV-14",  // Parents strongly cautioned; may be unsuitable for children under the age of 14
+        "TV-MA",  // Mature audience only
+
+        /* MPA film rating systems (US) */
+        "G",      // General audience; all ages admitted.
+        "PG",     // Parental guidance suggested; some material may not be suitable for children.
+        "PG-13",  // Parents strongly cautioned; some material may be inappropriate for children under 13.
+        "R",      // Restricted; under 17 requires accompanying parent or adult guardian.
+        "NC-17"   // Adults only; no one 17 and under admitted.
+      ]
+    },
+    "service_filter_collection": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Collection of service filters, which limit what items can be added to an instance.",
+      "properties": {
+        "genre": {
+          "$ref": "#/$defs/service_genre_filter"
+        },
+        "certification": {
+          "$ref": "#/$defs/service_certification_filter"
+        }
+      }
+    },
+    "plex": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["api_token"],
+      "properties": {
+        "api_token": {
+          "type": "string",
+          "description": "API token for authenticating with Plex.\nSee more here: https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/"
+        }
+      }
+    },
+    "sonarr_service_instance": {
+      "type": "object",
+      "required": [
+        "base_url",
+        "api_key"
+      ],
+      "properties": {
+        "enabled": {
+          "$ref": "#/$defs/enabled"
+        },
+        "base_url": {
+          "$ref": "#/$defs/base_url"
+        },
+        "api_key": {
+          "$ref": "#/$defs/api_key"
+        },
+        "filters": {
+          "$ref": "#/$defs/service_filter_collection"
+        },
+        "root_folder": {
+          "$ref": "#/$defs/root_folder"
+        },
+        "quality_profile": {
+          "$ref": "#/$defs/quality_profile"
+        },
+        "monitored": {
+          "$ref": "#/$defs/monitored"
+        },
+        "search_immediately": {
+          "$ref": "#/$defs/search_immediately"
+        },
+        "allow_in_production": {
+          "$ref": "#/$defs/allow_in_production"
+        },
+        "series_type": {
+          "enum": ["Standard", "Daily", "Anime"],
+          "description": "Defines what type to assign to newly-added series."
+        },
+        "season_folder": {
+          "type": "boolean",
+          "default": true,
+          "description": "Defines whether to create season folders for newly-added series."
+        },
+        "monitor_new_items": {
+          "type": "boolean",
+          "default": false,
+          "description": "Defines whether to monitor new items, as they are released."
+        },
+        "monitored_items": {
+          "enum": ["None", "All", "FirstSeason", "OnlyShortSeries"],
+          "default": "FirstSeason",
+          "description": "Defines which seasons should be monitored for newly-added series."
+        }
+      },
+      "if": {
+        "properties": {
+          "monitored_items": { "const": "OnlyShortSeries" }
+        }
+      },
+      "then": {
+        "properties": {
+          "short_series_threshold": {
+            "type": "number",
+            "default": 3,
+            "description": "When \"monitored_items\" is set to \"OnlyShortSeries\", defines the threshold for when a series is still 'short'. If a series has less-or-equal to this amount of seasons, it is considered short."
+          }
+        }
+      }
+    },
+    "radarr_service_instance": {
+      "type": "object",
+      "required": [
+        "base_url",
+        "api_key"
+      ],
+      "properties": {
+        "enabled": {
+          "$ref": "#/$defs/enabled"
+        },
+        "base_url": {
+          "$ref": "#/$defs/base_url"
+        },
+        "api_key": {
+          "$ref": "#/$defs/api_key"
+        },
+        "filters": {
+          "$ref": "#/$defs/service_filter_collection"
+        },
+        "root_folder": {
+          "$ref": "#/$defs/root_folder"
+        },
+        "quality_profile": {
+          "$ref": "#/$defs/quality_profile"
+        },
+        "monitored": {
+          "$ref": "#/$defs/monitored"
+        },
+        "search_immediately": {
+          "$ref": "#/$defs/search_immediately"
+        },
+        "allow_in_production": {
+          "$ref": "#/$defs/allow_in_production"
+        },
+        "minimum_availability": {
+          "enum": ["TBA", "Announced", "InCinemas", "Released"],
+          "default": "Released",
+          "description": "Sets the minimum availability before the instance should attempt fetching the movie."
+        },
+        "monitored_items": {
+          "enum": ["None", "MovieOnly", "MovieAndCollection"],
+          "default": "MovieOnly",
+          "description": "Defines which items should be monitored for newly-added movies."
+        }
+      }
+    }
+  }
+}

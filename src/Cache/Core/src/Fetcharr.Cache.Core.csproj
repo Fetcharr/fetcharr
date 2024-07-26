@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Fetcharr.Cache.Core</PackageId>
+    <AssemblyName>Fetcharr.Cache.Core</AssemblyName>
+    <RootNamespace>Fetcharr.Cache.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Fetcharr.Cache.SQLite" />
+    <InternalsVisibleTo Include="Fetcharr.Cache.InMemory" />
+    <InternalsVisibleTo Include="Fetcharr.Cache.Hybrid" />
+  </ItemGroup>
+
+</Project>

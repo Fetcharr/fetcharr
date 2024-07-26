@@ -1,0 +1,85 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsTestProject Condition="$(MSBuildProjectName.EndsWith('Tests'))">true</IsTestProject>
+    <IsBenchmarkProject Condition="$(MSBuildProjectName.EndsWith('Benchmark'))">true</IsBenchmarkProject>
+    <IsSourceProject Condition="'$(IsTestProject)' != 'true' AND '$(IsBenchmarkProject)' != 'true'">true</IsSourceProject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsSourceProject)' != 'true'">
+    <IsPackable>false</IsPackable>
+    <IncludeSymbols>false</IncludeSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsSourceProject)' == 'true'">
+    <IsPackable>true</IsPackable>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <NoWarn>CS1591;CS1573</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Source projects -->
+
+  <PropertyGroup Condition="'$(IsSourceProject)' == 'true'">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsSourceProject)' == 'true'">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+
+    <PackageReference Include="Flurl.Http" Version="4.0.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsSourceProject)' == 'true'">
+    <InternalsVisibleTo Include="$(RootNamespace).Tests" />
+    <InternalsVisibleTo Include="Fetcharr.Testing" />
+  </ItemGroup>
+
+  <!-- Test projects -->
+
+  <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+    <!-- Reference to corresponding source project -->
+    <ProjectReference Include="../src/$(RootNamespace).csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+    <PackageReference Include="FluentAssertions" Version="6.10.0" />
+    <PackageReference Include="Snapshooter.Xunit" Version="0.13.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.msbuild" Version="3.2.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- Benchmark projects -->
+
+  <ItemGroup Condition="'$(IsBenchmarkProject)' == 'true'">
+    <ProjectReference Include="../src/$(RootNamespace).csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsBenchmarkProject)' == 'true'">
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
+  </ItemGroup>
+
+</Project>

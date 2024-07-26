@@ -1,0 +1,11 @@
+services:
+  fetcharr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fetcharr
+    ports:
+      - 5000:5000
+    volumes:
+      - ./src/API/src/config.yaml:/app/config.yaml:rw
+    restart: unless-stopped

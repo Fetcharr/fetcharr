@@ -1,0 +1,157 @@
+# yaml-language-server: $schema=config-schema.json
+
+## Fetcharr configuration
+##   Uncomment the lines that you'd like to change, save and restart Fetcharr for the changes to take effect.
+
+## Configuration for Plex watchlists, etc.
+plex:
+  ## API token for your Plex account.
+  ## If you need help finding yours, see here: https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/
+  api_token: PLEX_TOKEN
+
+## List of all Sonarr instances available
+sonarr:
+  default:
+    ## Defines whether the instance should be used.
+    ## Default: true
+    # enabled: true
+
+    ## Base URL of the instance.
+    base_url: http://localhost:8989
+
+    ## API key for the instance.
+    api_key: SONARR_API_KEY
+
+    ## Defines filters for the instance, which can limit what content gets sent to it.
+    filters:
+      ## Filters items depending on item genre. Examples include: anime, action, horror, etc.
+      ## Default: []
+      genre: []
+
+      ## Filters items depending on their certification. Examples include: TV-PG, PG, TV-MA, etc.
+      ## Default: []
+      certification: []
+
+    ## Sets the root folder for newly-added items.
+    ## Default: null
+    # root_folder: /mnt/TV Shows
+
+    ## Sets the quality profile for newly-added items.
+    ## Default: null
+    # quality_profile: HD-1080p
+
+    ## Whether newly-added items should be monitored.
+    ## Default: true
+    # monitored: false
+
+    ## Whether the instance should search for newly-added items, right after they're added.
+    ## Default: true
+    # search_immediately: false
+
+    ## Whether to allow in-production series to be added to the instance.
+    ## When in-production, genres and certifications are still not finalized; meaning filters likely won't work.
+    ## Default: false
+    # allow_in_production: true
+
+    ## Sets the series type on newly-added items.
+    ## Available values: [Standard, Daily, Anime]
+    ## Default: Standard
+    # series_type: Standard
+
+    ## Sets whether the series should use season folders.
+    ## Default: true
+    # season_folder: false
+
+    ## Whether to monitor new items within newly-added series.
+    ## Default: false
+    # monitor_new_items: true
+
+    ## Sets which items should be monitored for newly-added series.
+    ## Available values: [None, All, FirstSeason, OnlyShortSeries]
+    ## Default: FirstSeason
+    # monitored_items: All
+
+    ## Defines what counts as a short series, in terms of season count. If less or equal to this value, it's a short series.
+    ## Only used if `monitored_items` is set to `OnlyShortSeries``.
+    ## Default: 3
+    # short_series_threshold: 1
+
+  ## Example of a Sonarr instance, exclusively for anime.
+  # sonarr_anime:
+  #   base_url: http://localhost:8989
+  #   api_key: SOME_KEY
+  #   enabled: true
+  #
+  #   filters:
+  #     genre:
+  #       - anime
+  #
+  #   root_folder: /mnt/Anime
+  #   series_type: Anime
+
+## List of all Radarr instances available
+radarr:
+  default:
+    ## Defines whether the instance should be used.
+    ## Default: true
+    # enabled: true
+
+    ## Base URL of the instance.
+    base_url: http://localhost:7878
+
+    ## API key for the instance.
+    api_key: RADARR_API_KEY
+
+    ## Defines filters for the instance, which can limit what content gets sent to it.
+    filters:
+      ## Filters items depending on item genre. Examples include: anime, action, horror, etc.
+      ## Default: []
+      genre: []
+
+      ## Filters items depending on their certification. Examples include: TV-PG, PG, TV-MA, etc.
+      ## Default: []
+      certification: []
+
+    ## Sets the root folder for newly-added items.
+    ## Default: null
+    # root_folder: /mnt/Movies
+
+    ## Sets the quality profile for newly-added items.
+    ## Default: null
+    # quality_profile: HD-1080p
+
+    ## Whether newly-added items should be monitored.
+    ## Default: true
+    # monitored: false
+
+    ## Whether the instance should search for newly-added items, right after they're added.
+    ## Default: true
+    # search_immediately: false
+
+    ## Whether to allow in-production movies to be added to the instance.
+    ## When in-production, genres and certifications are still not finalized; meaning filters likely won't work.
+    ## Default: false
+    # allow_in_production: true
+
+    ## Sets the minimum availability before the instance should attempt fetching the movie.
+    ## Available values: [TBA, Announced, InCinemas, Released]
+    ## Default: Released
+    # minimum_availability: InCinemas
+
+    ## Sets which items should be monitored for newly-added movies.
+    ## Available values: [None, MovieOnly, MovieAndCollection]
+    ## Default: MovieOnly
+    # monitored_items: MovieAndCollection
+
+  ## Example of a Radarr instance, exclusively for anime.
+  # radarr_anime:
+  #   base_url: http://localhost:7878
+  #   api_key: SOME_KEY
+  #   enabled: true
+  #
+  #   filters:
+  #     genre:
+  #       - anime
+  #
+  #   root_folder: /mnt/Anime
+  #   series_type: Anime

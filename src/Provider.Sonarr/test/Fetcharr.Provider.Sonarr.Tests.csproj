@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Fetcharr.Provider.Sonarr</RootNamespace>
+    <PackageId>Fetcharr.Provider.Sonarr.Tests</PackageId>
+    <AssemblyName>Fetcharr.Provider.Sonarr.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Testing\Fetcharr.Testing.csproj" />
+  </ItemGroup>
+
+</Project>

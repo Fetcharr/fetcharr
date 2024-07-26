@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Fetcharr.Provider.Sonarr</PackageId>
+    <AssemblyName>Fetcharr.Provider.Sonarr</AssemblyName>
+    <RootNamespace>Fetcharr.Provider.Sonarr</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cache\Core\src\Fetcharr.Cache.Core.csproj" />
+    <ProjectReference Include="..\..\Provider\src\Fetcharr.Provider.csproj" />
+    <ProjectReference Include="..\..\Shared\src\Fetcharr.Shared.csproj" />
+    <ProjectReference Include="..\..\Models\src\Fetcharr.Models.csproj" />
+  </ItemGroup>
+
+</Project>

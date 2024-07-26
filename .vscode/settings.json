@@ -1,0 +1,31 @@
+{
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/*.AssemblyInfo.cs": true
+  },
+  "editor.rulers": [0, 120],
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "*.Build.props": "xml",
+    "*.Build.targets": "xml",
+    "*.slnf": "json",
+  },
+  "dotnet.defaultSolution": "src/Benzin.sln",
+  "markdown.styles": [
+      "https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+  ],
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "keep",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  }
+}

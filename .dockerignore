@@ -1,0 +1,16 @@
+**/*.md
+**/.gitkeep
+**/.vscode
+**/.build
+**/.nuke
+.dockerignore
+.editorconfig
+.git
+.github
+.gitignore
+**/db/*
+**/config*.yaml
+Dockerfile*
+docker-compose.yml
+docs
+LICENSE

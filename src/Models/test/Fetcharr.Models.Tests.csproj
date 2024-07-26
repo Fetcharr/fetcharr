@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Fetcharr.Models</RootNamespace>
+    <PackageId>Fetcharr.Models.Tests</PackageId>
+    <AssemblyName>Fetcharr.Models.Tests</AssemblyName>
+  </PropertyGroup>
+
+</Project>

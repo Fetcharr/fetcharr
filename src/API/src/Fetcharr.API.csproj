@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <PackageId>Fetcharr.API</PackageId>
+    <AssemblyName>Fetcharr.API</AssemblyName>
+    <RootNamespace>Fetcharr.API</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="config-schema.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="YamlDotNet" Version="16.0.0" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Models\src\Fetcharr.Models.csproj" />
+    <ProjectReference Include="..\..\Cache\Hybrid\src\Fetcharr.Cache.Hybrid.csproj" />
+    <ProjectReference Include="..\..\Provider.Plex\src\Fetcharr.Provider.Plex.csproj" />
+    <ProjectReference Include="..\..\Provider.Radarr\src\Fetcharr.Provider.Radarr.csproj" />
+    <ProjectReference Include="..\..\Provider.Sonarr\src\Fetcharr.Provider.Sonarr.csproj" />
+  </ItemGroup>
+
+</Project>

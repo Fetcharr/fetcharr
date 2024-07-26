@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Fetcharr.Provider</PackageId>
+    <AssemblyName>Fetcharr.Provider</AssemblyName>
+    <RootNamespace>Fetcharr.Provider</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cache\Core\src\Fetcharr.Cache.Core.csproj" />
+    <ProjectReference Include="..\..\Models\src\Fetcharr.Models.csproj" />
+  </ItemGroup>
+
+</Project>

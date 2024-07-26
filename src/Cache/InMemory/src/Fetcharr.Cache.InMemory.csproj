@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Fetcharr.Cache.InMemory</PackageId>
+    <AssemblyName>Fetcharr.Cache.InMemory</AssemblyName>
+    <RootNamespace>Fetcharr.Cache.InMemory</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\src\Fetcharr.Cache.Core.csproj" />
+  </ItemGroup>
+
+</Project>
