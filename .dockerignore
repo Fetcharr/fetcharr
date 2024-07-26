@@ -1,4 +1,3 @@
-**/*.md
 **/.gitkeep
 **/.vscode
 **/.build
@@ -10,7 +9,19 @@
 .gitignore
 **/db/*
 **/config*.yaml
-Dockerfile*
-docker-compose.yml
 docs
 LICENSE
+
+# directories
+**/bin/
+**/obj/
+**/out/
+
+# files
+Dockerfile*
+docker-compose.yml
+**/*.trx
+**/*.md
+**/*.ps1
+**/*.cmd
+**/*.sh
