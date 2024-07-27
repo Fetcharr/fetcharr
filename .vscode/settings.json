@@ -11,6 +11,7 @@
     "*.Build.props": "xml",
     "*.Build.targets": "xml",
     "*.slnf": "json",
+    "*-schema.json": "jsonc",
   },
   "dotnet.defaultSolution": "src/Benzin.sln",
   "markdown.styles": [
