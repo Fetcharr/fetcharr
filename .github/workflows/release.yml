@@ -21,6 +21,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Login to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and release
         run: ./build.cmd Release ${{ github.ref == 'refs/heads/develop' && '--pre-release' || '' }}
         env:
