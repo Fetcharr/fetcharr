@@ -10,9 +10,11 @@ partial class Build : NukeBuild
 {
     private string DockerImage => $"ghcr.io/fetcharr/fetcharr";
 
-    private string DockerTag => GitVersion.SemVer;
+    private string[] DockerVersionTags => GitVersion.BranchName.Equals("develop", StringComparison.InvariantCultureIgnoreCase)
+        ? ["develop", $"develop-{GitVersion.MajorMinorPatch}.{GitVersion.PreReleaseNumber}"]
+        : ["latest", $"{GitVersion.Major}", $"{GitVersion.Major}.{GitVersion.Minor}", $"{GitVersion.MajorMinorPatch}"];
 
-    private string DockerImageTag => $"{DockerImage}:{DockerTag}";
+    private string[] DockerImageTags => DockerVersionTags.Select(version => $"{DockerImage}:{version}").ToArray();
 
     private string[] DockerImagePlatforms => ["linux/amd64", "linux/arm", "linux/arm64"];
 
@@ -24,7 +26,7 @@ partial class Build : NukeBuild
             DockerBuildxBuild(x => x
                 .SetPath(".")
                 .SetFile("Dockerfile")
-                .SetTag(this.DockerImageTag)
+                .SetTag(this.DockerImageTags)
                 .SetPlatform(string.Join(",", this.DockerImagePlatforms))
                 .SetPush(true)
                 .AddCacheFrom("type=gha")
