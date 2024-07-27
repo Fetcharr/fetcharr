@@ -19,12 +19,14 @@ partial class Build : NukeBuild
     Target BuildImage => _ => _
         .DependsOn(Test)
         .DependsOn(Format)
+        .Requires(() => this.GithubToken)
         .Executes(() =>
             DockerBuildxBuild(x => x
                 .SetPath(".")
                 .SetFile("Dockerfile")
                 .SetTag(this.DockerImageTag)
                 .SetPlatform(string.Join(",", this.DockerImagePlatforms))
+                .SetPush(true)
                 .AddCacheFrom("type=gha")
                 .AddCacheTo("type=gha,mode=max")
                 .AddLabel("org.opencontainers.image.source=https://github.com/fetcharr/fetcharr")
@@ -44,11 +46,4 @@ partial class Build : NukeBuild
                         Log.Information(output);
                     }
                 })));
-
-    Target PushImage => _ => _
-        .DependsOn(BuildImage)
-        .Requires(() => this.GithubToken)
-        .Executes(() =>
-            DockerImagePush(x => x
-                .SetName(this.DockerImageTag)));
 }

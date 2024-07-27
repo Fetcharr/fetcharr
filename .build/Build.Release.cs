@@ -10,7 +10,6 @@ partial class Build : NukeBuild
 
     Target Release => _ => _
         .DependsOn(BuildImage)
-        .Triggers(PushImage)
         .Requires(() => this.GithubToken)
         .Executes(async () =>
         {
