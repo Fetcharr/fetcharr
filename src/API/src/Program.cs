@@ -32,6 +32,7 @@ namespace Fetcharr.API
 
             builder.Services
                 .AddSingleton<IAppDataSetup, EnvironmentalAppDataSetup>()
+                .AddHostedService<StartupInformationService>()
                 .AddPlexServices()
                 .AddSonarrServices()
                 .AddRadarrServices()
