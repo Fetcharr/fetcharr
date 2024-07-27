@@ -11,6 +11,17 @@ COPY . .
 RUN dotnet publish src/API/src/Fetcharr.API.csproj --no-restore -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
-COPY --from=build-env /app /app
+WORKDIR /app
 
-ENTRYPOINT ["dotnet", "/app/Fetcharr.API.dll"]
+ENV FETCHARR_BASE_DIR="/app/fetcharr" \
+    FETCHARR_CONFIG_DIR="/config"
+
+RUN set -ex; \
+    mkdir -p /config && chown 1000:1000 /config;
+
+COPY --from=build-env --chown=1000:1000 /app /app/fetcharr
+
+USER 1000:1000
+VOLUME /config
+
+ENTRYPOINT ["dotnet", "/app/fetcharr/Fetcharr.API.dll"]

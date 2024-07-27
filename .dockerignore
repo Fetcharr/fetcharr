@@ -4,10 +4,8 @@
 **/.nuke
 .dockerignore
 .editorconfig
-.git
 .github
 .gitignore
-**/db/*
 **/config*.yaml
 docs
 LICENSE
@@ -25,3 +23,6 @@ docker-compose.yml
 **/*.ps1
 **/*.cmd
 **/*.sh
+
+# gitversion
+.git/gitversion_cache
