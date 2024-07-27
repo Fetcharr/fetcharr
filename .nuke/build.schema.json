@@ -84,7 +84,6 @@
               "Clean",
               "Compile",
               "Format",
-              "PushImage",
               "Release",
               "Restore",
               "Test"
@@ -101,7 +100,6 @@
               "Clean",
               "Compile",
               "Format",
-              "PushImage",
               "Release",
               "Restore",
               "Test"
