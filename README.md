@@ -48,7 +48,7 @@ docker run -d \
     ghcr.io/fetcharr/fetcharr:latest
 ```
 
-If you prefer a more *declarative* way of starting Fetcharr, use this `compose.yaml` file:
+If you prefer a more *declarative* way of starting Fetcharr, you can use this `compose.yaml` file:
 
 ```yaml
 services:
@@ -61,6 +61,9 @@ services:
       - /path/to/appdata/config:/config
     restart: unless-stopped
 ```
+
+Copy the [`config.example.yaml`](./config.example.yaml)-file to your configuration folder as `config.yaml` and edit it to your liking.
+When you've changed the config-file, remember to restart Fetcharr for it to take effect.
 
 ## 📝 Contributing
 
