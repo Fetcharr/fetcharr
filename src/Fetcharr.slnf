@@ -4,7 +4,10 @@
     "projects": [
       "..\\.build\\_build.csproj",
       "API\\src\\Fetcharr.API.csproj",
-      "Cache\\src\\Fetcharr.Cache.csproj",
+      "Cache\\Core\\src\\Fetcharr.Cache.Core.csproj",
+      "Cache\\Hybrid\\src\\Fetcharr.Cache.Hybrid.csproj",
+      "Cache\\InMemory\\src\\Fetcharr.Cache.InMemory.csproj",
+      "Cache\\SQLite\\src\\Fetcharr.Cache.SQLite.csproj",
       "Models\\src\\Fetcharr.Models.csproj",
       "Models\\test\\Fetcharr.Models.Tests.csproj",
       "Provider\\src\\Fetcharr.Provider.csproj",
