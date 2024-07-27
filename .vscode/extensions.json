@@ -1,5 +1,6 @@
 {
     "recommendations": [
+      "EditorConfig.editorconfig",
       "ms-dotnettools.csdevkit",
       "ms-dotnettools.vscodeintellicode-csharp",
       "redhat.vscode-yaml"
