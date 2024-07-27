@@ -14,6 +14,8 @@ partial class Build : NukeBuild
 
     private string DockerImageTag => $"{DockerImage}:{DockerTag}";
 
+    private string[] DockerImagePlatforms => ["linux/amd64", "linux/arm", "linux/arm64"];
+
     Target BuildImage => _ => _
         .DependsOn(Test)
         .DependsOn(Format)
@@ -22,6 +24,7 @@ partial class Build : NukeBuild
                 .SetPath(".")
                 .SetFile("Dockerfile")
                 .SetTag(this.DockerImageTag)
+                .SetPlatform(string.Join(",", this.DockerImagePlatforms))
                 .AddCacheFrom("type=gha")
                 .AddCacheTo("type=gha,mode=max")
                 .AddLabel("org.opencontainers.image.source=https://github.com/fetcharr/fetcharr")
