@@ -59,6 +59,10 @@
           "type": "boolean",
           "description": "Shows the execution plan (HTML)"
         },
+        "PreRelease": {
+          "type": "boolean",
+          "description": "Whether the release is a pre-release or not"
+        },
         "Profile": {
           "type": "array",
           "description": "Defines the profiles to load",
@@ -81,6 +85,7 @@
               "Compile",
               "Format",
               "PushImage",
+              "Release",
               "Restore",
               "Test"
             ]
@@ -97,6 +102,7 @@
               "Compile",
               "Format",
               "PushImage",
+              "Release",
               "Restore",
               "Test"
             ]
