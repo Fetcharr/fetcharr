@@ -19,9 +19,9 @@ partial class Build : NukeBuild
                 Credentials = new Credentials(this.GithubToken)
             };
 
-            NewRelease release = new(GitVersion.SemVer)
+            NewRelease release = new(GitVersion.MajorMinorPatch)
             {
-                Name = GitVersion.SemVer,
+                Name = GitVersion.MajorMinorPatch,
                 Prerelease = this.PreRelease,
                 Draft = false,
                 GenerateReleaseNotes = true,
