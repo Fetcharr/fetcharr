@@ -10,9 +10,9 @@ partial class Build : NukeBuild
 {
     private string DockerImage => $"ghcr.io/fetcharr/fetcharr";
 
-    private string[] DockerVersionTags => GitVersion.BranchName.Equals("develop", StringComparison.InvariantCultureIgnoreCase)
-        ? ["develop", $"develop-{GitVersion.MajorMinorPatch}.{GitVersion.PreReleaseNumber}"]
-        : ["latest", $"{GitVersion.Major}", $"{GitVersion.Major}.{GitVersion.Minor}", $"{GitVersion.MajorMinorPatch}"];
+    private string[] DockerVersionTags => GitVersion.BranchName.Equals("main", StringComparison.InvariantCultureIgnoreCase)
+        ? ["latest", $"{GitVersion.Major}", $"{GitVersion.Major}.{GitVersion.Minor}", $"{GitVersion.MajorMinorPatch}"]
+        : ["develop", $"develop-{GitVersion.MajorMinorPatch}.{GitVersion.PreReleaseNumber}"];
 
     private string[] DockerImageTags => DockerVersionTags.Select(version => $"{DockerImage}:{version}").ToArray();
 
