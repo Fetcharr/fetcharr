@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - main
-      - develop
 
 jobs:
   release:
@@ -35,6 +34,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and release
-        run: ./build.cmd Release ${{ github.ref == 'refs/heads/develop' && '--pre-release' || '' }}
+        run: ./build.cmd Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

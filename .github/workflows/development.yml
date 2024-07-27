@@ -28,4 +28,6 @@ jobs:
           fetch-depth: 0
 
       - name: Build, format and test
-        run: ./build.cmd Compile Format Test
+        run: ./build.cmd Compile Format Test ${{ github.ref == 'refs/heads/develop' && 'BuildImage' || '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
