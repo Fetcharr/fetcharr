@@ -8,7 +8,7 @@ using static Nuke.Common.Tools.Docker.DockerTasks;
 
 partial class Build : NukeBuild
 {
-    private string DockerImage => $"ghcr.io/maxnatamo/fetcharr";
+    private string DockerImage => $"ghcr.io/fetcharr/fetcharr";
 
     private string DockerTag => GitVersion.SemVer;
 
@@ -24,8 +24,8 @@ partial class Build : NukeBuild
                 .SetTag(this.DockerImageTag)
                 .AddCacheFrom("type=gha")
                 .AddCacheTo("type=gha,mode=max")
-                .AddLabel("org.opencontainers.image.source=https://github.com/maxnatamo/fetcharr")
-                .AddLabel("org.opencontainers.image.url=https://github.com/maxnatamo/fetcharr")
+                .AddLabel("org.opencontainers.image.source=https://github.com/fetcharr/fetcharr")
+                .AddLabel("org.opencontainers.image.url=https://github.com/fetcharr/fetcharr")
                 .AddLabel("org.opencontainers.image.description=Automatically sync Plex watchlist to your Sonarr and Radarr instances.")
                 .AddLabel("org.opencontainers.image.licenses=MIT")
                 .SetProcessLogger((outputType, output) =>

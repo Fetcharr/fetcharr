@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/maxnatamo/fetcharr/main/src/API/src/config-schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fetcharr/fetcharr/main/src/API/src/config-schema.json
 
 ## Fetcharr configuration
 ##   Uncomment the lines that you'd like to change, save and restart Fetcharr for the changes to take effect.

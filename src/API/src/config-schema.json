@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
-  "$id": "https://raw.githubusercontent.com/maxnatamo/fetcharr/main/src/API/src/config-schema.json",
+  "$id": "https://raw.githubusercontent.com/fetcharr/fetcharr/main/src/API/src/config-schema.json",
   "type": "object",
   "additionalProperties": false,
   "properties": {

@@ -14,7 +14,7 @@ partial class Build : NukeBuild
         .Requires(() => this.GithubToken)
         .Executes(async () =>
         {
-            ProductHeaderValue productInformation = new("maxnatamo");
+            ProductHeaderValue productInformation = new("fetcharr");
             GitHubTasks.GitHubClient = new GitHubClient(productInformation)
             {
                 Credentials = new Credentials(this.GithubToken)
