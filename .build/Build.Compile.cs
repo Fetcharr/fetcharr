@@ -1,8 +1,6 @@
 using Nuke.Common;
 using Nuke.Common.Tools.DotNet;
 
-using static Nuke.Common.IO.PathConstruction;
-
 partial class Build : NukeBuild
 {
     Target Restore => _ => _
@@ -14,6 +12,6 @@ partial class Build : NukeBuild
         .Executes(() =>
             DotNetTasks.DotNetBuild(c => c
                 .SetProjectFile(SolutionFilePath)
-                .SetNoRestore(InvokedTargets.Contains(Restore))
+                .SetNoRestore(true)
                 .SetConfiguration(Configuration)));
 }
