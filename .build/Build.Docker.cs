@@ -32,7 +32,7 @@ partial class Build : NukeBuild
                 {
                     // Workaround for all Docker messages being logged as errors.
                     // Source: https://github.com/nuke-build/nuke/issues/1201
-                    if (outputType == OutputType.Std)
+                    if(outputType == OutputType.Std)
                     {
                         Log.Error(output);
                     }
