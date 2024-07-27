@@ -24,12 +24,6 @@ namespace Fetcharr.Cache.SQLite
         /// <inheritdoc />
         public override async Task InitializeAsync(CancellationToken cancellationToken = default)
         {
-            string? databaseFolder = Path.GetDirectoryName(options.Value.DatabasePath);
-            if(!string.IsNullOrEmpty(databaseFolder))
-            {
-                Directory.CreateDirectory(databaseFolder);
-            }
-
             using CacheContext context = contextFactory.CreateDbContext();
             await context.Database.MigrateAsync(cancellationToken);
         }

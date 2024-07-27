@@ -7,15 +7,20 @@ namespace Fetcharr.API.Configuration
     /// <summary>
     ///   Parser for reading the YAML config of Fetcharr into memory.
     /// </summary>
-    public class ConfigurationParser
+    public class ConfigurationParser(IAppDataSetup appDataSetup)
     {
         /// <summary>
-        ///   Read and parse the YAML configuration file, located at <paramref name="path"/>, and return it.
+        ///   Read and parse the YAML configuration file and return it.
         /// </summary>
-        /// <param name="path">Path to the YAML configuration file.</param>
-        public FetcharrConfiguration ReadConfig(string path)
+        public FetcharrConfiguration ReadConfig()
         {
-            using StreamReader configContent = File.OpenText(path);
+            string configFilePath = appDataSetup.ConfigurationFilePath;
+            if(!File.Exists(configFilePath))
+            {
+                throw new FileNotFoundException($"Configuration file '{configFilePath}' could not be found.");
+            }
+
+            using StreamReader configContent = File.OpenText(configFilePath);
             string config = configContent.ReadToEnd();
 
             IDeserializer deserializer = new DeserializerBuilder()

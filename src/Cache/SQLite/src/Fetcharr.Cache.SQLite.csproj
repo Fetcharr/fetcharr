@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\src\Fetcharr.Cache.Core.csproj" />
+    <ProjectReference Include="..\..\..\Models\src\Fetcharr.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

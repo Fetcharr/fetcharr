@@ -1,5 +1,6 @@
 using Fetcharr.API.Configuration;
 using Fetcharr.API.Extensions;
+using Fetcharr.API.Services;
 using Fetcharr.Cache.Core.Extensions;
 using Fetcharr.Cache.Hybrid.Extensions;
 using Fetcharr.Cache.InMemory.Extensions;
@@ -22,14 +23,15 @@ namespace Fetcharr.API
                     options.TimestampFormat = "HH:mm:ss ";
                 }));
 
-            builder.Services.AddSingleton<FetcharrConfiguration>(_
-                => new ConfigurationParser().ReadConfig("config.yaml"));
+            builder.Services.AddSingleton<FetcharrConfiguration>(provider =>
+                ActivatorUtilities.CreateInstance<ConfigurationParser>(provider).ReadConfig());
 
             builder.Services.AddCaching(opts => opts
-                .UseHybrid("metadata", opts => opts.SQLite.DatabasePath = "db/metadata.sqlite")
+                .UseHybrid("metadata", opts => opts.SQLite.DatabasePath = "metadata.sqlite")
                 .UseInMemory("watchlist"));
 
             builder.Services
+                .AddSingleton<IAppDataSetup, EnvironmentalAppDataSetup>()
                 .AddPlexServices()
                 .AddSonarrServices()
                 .AddRadarrServices()
