@@ -13,7 +13,6 @@ partial class Build : NukeBuild
         .DependsOn(Compile)
         .Executes(() =>
             DotNetTasks.DotNetTest(c => c
-                .SetNoBuild(true)
                 .SetNoRestore(true)
                 .SetConfiguration(Configuration.Debug)
                 .CombineWith(TestProjects, (_, project) => _
