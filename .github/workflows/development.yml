@@ -6,16 +6,19 @@ on:
   push:
     branches:
       - develop
-    paths-ignore:
-      - 'docs/**'
-      - '.vscode/**'
+    paths:
+      - 'src/**'
+      - '.build/**'
+      - 'Dockerfile'
 
   pull_request:
     branches:
       - '*'
-    paths-ignore:
-      - 'docs/**'
-      - '.vscode/**'
+    paths:
+      - 'src/**'
+      - '.build/**'
+      - 'Dockerfile'
+  workflow_dispatch:
 
 jobs:
   build:
