@@ -1,0 +1,70 @@
+---
+id: config-examples
+sidebar_position: 5
+---
+
+# Configuration Examples
+
+This page lists various scenarios supported by Fetcharr, which might come in handy:
+
+## Limit an instance to anime-only
+
+This method functions on both Radarr and Sonarr instances. It separates anime content from other content and sends them to different instances. This can help prevent clutter in your Sonarr and/or Radarr instances.
+
+```yaml title="config.yaml"
+sonarr:
+  default:
+    base_url: http://localhost:8989
+    api_key: SOME_KEY
+    enabled: true
+
+    root_folder: /mnt/TV Shows
+    series_type: Standard
+
+  anime_only:
+    base_url: http://localhost:8990
+    api_key: SOME_KEY
+    enabled: true
+
+    filters:
+      genre:
+        - anime
+
+    root_folder: /mnt/TV Shows (Anime)
+    series_type: Anime
+```
+
+Fetcharr will prefer the instance *explicitly* allows anime, as opposed to the instance which *implicitly* allows anime.
+
+## Limit an instance to kids content
+
+This method functions on both Radarr and Sonarr instances. It separates content for children into a separate instance, allowing for less clutter. It functions very similar to [anime-only instances](#limit-an-instance-to-anime-only).
+
+```yaml title="config.yaml"
+sonarr:
+  default:
+    base_url: http://localhost:8989
+    api_key: SOME_KEY
+    enabled: true
+
+    root_folder: /mnt/TV Shows
+
+  anime_only:
+    base_url: http://localhost:8990
+    api_key: SOME_KEY
+    enabled: true
+
+    filters:
+      certification:
+        # TV Parental Guidelines (US)
+        - TV-Y       # All children, including ages from 2-6
+        - TV-Y7      # Directed at children age 7 and above.
+        - TV-G       # General audience
+        - TV-PG      # Parental guidance suggested
+
+        # MPA film rating systems (US)
+        - G          # General audience; all ages admitted.
+        - PG         # Parental guidance suggested; some material may not be suitable for children.
+
+    root_folder: /mnt/TV Shows (Kids)
+```

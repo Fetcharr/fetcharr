@@ -1,25 +1,41 @@
-# Introduction
+# Website
 
-Welcome to the Fetcharr documentation.
+This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-## Features
+### Installation
 
-- **Integrates with Sonarr and Radarr**. Easy setup with multiple Radarr and/or Sonarr instances.
-- **Customizable filter rules** to limit what instances can be used for what content.
-- **Cross-platform**. Works on both `amd64`, `arm` and `arm64`.
-- **Frequently syncs your watchlist** allowing users to watch content shortly after adding it.
+```
+$ yarn
+```
 
-## Motivation
+### Local Development
 
-One of the strongest motivations to make Fetcharr was to get a more customizable experience, than what other solutions could offer. Having one Sonarr/Radarr instance for English content and another for anime was the primary goal.
+```
+$ yarn start
+```
 
-## Contributing
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-Fetcharr is a simple hobby project. It is not meant to be anything more than that. If you have an interest in contributing, we'd love to have you on board!
+### Build
 
-But, it should be noted that Fetcharr is nowhere near the first iteration of this concept. Below are some projects that Fetcharr took inspiration from, which you should consider helping, as well:
- - [Overseerr](https://github.com/sct/overseerr), by [Ryan Cohen](https://github.com/sct)
- - [Watchlistarr](https://github.com/nylonee/watchlistarr), by [Nihal Mirpuri](https://github.com/nylonee)
- - [Recyclarr](https://github.com/recyclarr/recyclarr), by [Robert Dailey](https://github.com/rcdailey)
+```
+$ yarn build
+```
 
-All of the projects above are made by very smart people, who have contributed hundreds of hours of their own free time. Consider helping them out instead, if you're interested in contributing to open-source.
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Deployment
+
+Using SSH:
+
+```
+$ USE_SSH=true yarn deploy
+```
+
+Not using SSH:
+
+```
+$ GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

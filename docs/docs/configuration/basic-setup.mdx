@@ -1,0 +1,183 @@
+---
+id: basic-setup
+sidebar_position: 2
+---
+
+# Basic Setup
+
+## Plex
+
+:::info
+
+Plex tokens are not permanent and will expire after some time. Continuously updating the token via Plex' API is coming in a future release.
+
+:::
+
+```yaml
+plex:
+  api_token: PLEX_TOKEN
+```
+
+To setup your Plex account in Fetcharr, you need to get your Plex token. While we could outline the steps for getting yours here, it would be better to refer til Plex' official documentation.
+
+You can read their page on [getting your Plex token here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/).
+
+:::danger
+
+**You should not share your Plex token with anyone.** It will allow anyone to impersonate you on Plex.
+
+:::
+
+## Service
+
+"Service" is the generic term for both Radarr and Sonarr instances. Most configuration settings are the same, although they may each have extra configuration available.
+
+This means that whether you're configuring a Radarr or Sonarr instance in Fetcharr, these configuration values will work for both.
+
+```yaml title="config.yaml"
+service_type:
+  instance_name:
+    enabled: true
+    base_url: http://INSTANCE_HOST:INSTANCE_POST
+    api_key: INSTANCE_API_KEY
+    filters:
+      genre: []
+      certification: []
+    root_folder: /mnt/Content
+    quality_profile: HD-1080p
+    monitored: true
+    search_immediately: true
+    allow_in_production: false
+```
+
+### `service_type`
+**Required.**
+
+Must be either `sonarr` or `radarr`. This property is a key-value map of all the different instances of `service_type` in Fetcharr. This means that only Radarr instances can be under the `radarr` collection and only Sonarr instances under `sonarr`.
+
+### `instance_name`
+**Required.**
+
+Some recognizable name for your instance. If you only have a single instance, you can call it Default. You can also name it after what filters you apply, quality profile or other settings.
+
+:::info
+
+If you want a more human-readable name for an instance, you can put the name in quotes, so you can name it anything. For example:
+
+```yaml
+sonarr:
+  "Anime-only Shows":
+    enabled: true
+    [...]
+```
+
+:::
+
+### `base_url`
+**Required.**
+
+The base URL of your instance. This is the URL you go to, when visiting the instance. Note: it must include protocol (http or https), hostname (e.g. localhost), port and path, if applicable.
+
+### `api_key`
+**Required.**
+
+The API key for Fetcharr uses to communicate with your instance. You can find your API key by going to your instance, going to Settings > General and copying the "API Key" under the "Security" group.
+
+### `enabled`
+**Optional.** Default: `true`
+
+Whether the instance should be enabled. This can be useful for playing around with filters or configuration, without having to alter your existing configuration.
+
+### `filters`
+**Optional.** Default: unset.
+
+Which filters to apply to the instance. They can help limit what content will be sent to the instance, such as limiting an instance to be anime-only, kids-only, etc.
+
+For more information about filters, click here.
+
+### `root_folder`
+**Optional.** Default: `null`
+
+When sending content to the instance, defines the path to where the content should be stored. This root folder must be defined in the instance, under `Settings > Media Management` and under the "Root Folders" group.
+If this isn't set, Fetcharr will take the first one in the instance.
+
+### `quality_profile`
+**Optional.** Default: `null`
+
+When sending content to the instance, defines the name of the quality profile of the content. This profile must be defined in the instance, under `Settings > Profiles` and under the "Quality Profiles" group.
+If this isn't set, Fetcharr will take the first one in the instance.
+
+### `monitored`
+**Optional.** Default: `true`
+
+Whether to monitor new content in the instance.
+
+### `search_immediately`
+**Optional.** Default: `true`
+
+Whether to force the instance to search for newly added content, right after it's added.
+
+### `allow_in_production`
+**Optional.** Default: `false`
+
+Whether to allow in-production content, such as content which has only been announced.
+When content is in production, genres and certifications have often not been finalized, which will render instance filters useless.
+
+## Sonarr
+
+This section will only cover instance options that are unique to Sonarr. All the configuration options in [Services](#service) are still allowed.
+
+### `series_type`
+**Optional.** Default: `Standard`
+
+Must be one of `Standard`, `Anime`, `Daily`. Defines what type newly added series should have. This defines the expected episode numbering, as follows:
+- `Standard`: Follows western episode numbering (S01E05)
+- `Anime`: Follows anime and/or absolute episode numbering (005)
+- `Daily`: Follows calendar episode number (2020-05-25)
+
+### `season_folder`
+**Optional.** Default: `true`
+
+Whether to create folders for each season in a series.
+
+### `monitor_new_items`
+**Optional.** Default: `false`
+
+Whether to monitor any new items within the series, once they're released.
+
+### `monitored_items`
+**Optional.** Default: `false`
+
+Must be one of `None`, `All`, `FirstSeason`, `OnlyShortSeries`. Defines which items should be monitored for newly added series.
+- `None`: Nothing is monitored, even if the series itself is.
+- `All`: Monitor all seasons.
+- `FirstSeason`: Monitor only the first season of the series.
+- `OnlyShortSeries`: If the season count of the series is more than short_series_threshold, monitors the first season. If the season count is less or equal to short_series_threshold, monitors all seasons.
+
+### `short_series_threshold`
+**Optional.** Default: `3`
+
+Only evaluated if: [monitored_items](#monitored_items) is set to `OnlyShortSeries`.
+Defines how many seasons constitute a series as a "short series", in reference to [monitored_items](#monitored_items). If a series has more seasons than this value, it is considered a "long series". If it has less or equal to this value, it is considered a "short series".
+
+| Season Count | Threshold | Monitored Items                 |
+| ------------ | --------- | ------------------------------- |
+| 1            | 3         | All seasons are monitored.      |
+| 3            | 3         | All seasons are monitored.      |
+| 4            | 3         | Only first season is monitored. |
+
+## Radarr
+
+This section will only cover instance options that are unique to Radarr. All the configuration options in [Services](#service) are still allowed.
+
+### `minimum_availability`
+**Optional.** Default: `Released`
+
+Must be one of `TBA`, `Announced`, `InCinemas`, `Released`. Defines when Radarr should attempt to search for the movie.
+
+Most often, you'd want to only get movies released either physically or on streaming services, to prevent camera recordings.
+
+### `monitored_items`
+**Optional.** Default: `MovieOnly`
+
+Must be one of `None`, `MovieOnly`, `MovieAndCollection`. Defines whether the entire movie collection should be monitor, only the movie, or none at all.

@@ -1,0 +1,40 @@
+---
+id: schema-validation
+sidebar_position: 3
+---
+
+# Schema Validation
+
+All of the YAML files in Fetcharr have accompanying schema files. This helps narrow down issues before trying to deploy them, only to learn that you made a typo. On top of that, it is also useful if:
+- you edit your YAML files in [Visual Studio Code](https://code.visualstudio.com/),
+- you want in-editor documentation about the various properties and what they support,
+- you want auto-complete for properties and objects
+- or you want to avoid trivial errors, such as making a typo.
+
+:::info
+
+*Schema files* help you validate that your YAML is both valid YAML, as well as a valid configuration. This makes debugging a lot easier, since you'll see formatting errors immediately, instead of when you start Fetcharr.
+
+Schemas are JSON files, which can be stored on any number of services, or even local. [JSON Schema Store](https://schemastore.org/) is one such service, hosting hundreds of schema files for various different configuration files; not just YAML!
+
+:::
+
+## YAML Validation in Visual Studio Code
+
+For this, we assume that you already have Visual Studio Code up and running on your local machine. Afterwards, install the [YAML Extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) by [Red Hat](https://marketplace.visualstudio.com/publishers/redhat) in Visual Studio Code.
+
+:::info
+
+If you don't know how to install extensions in VS Code, you can [read this page](https://code.visualstudio.com/docs/editor/extension-marketplace) or [watch this video](https://code.visualstudio.com/learn/get-started/extensions).
+
+:::
+
+### Enable schema validation
+
+If you're using the configuration files from Fetcharr, they should already have schema validation enabled. If not, you can add this to the top of the file:
+
+```yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fetcharr/fetcharr/main/config-schema.json
+```
+
+This will tell the YAML extension which schema to use and where to find it. After adding it, you should begin to see contextual information about the configuration file, when you hover over properties. If you make an indentation error or typo, you should also be able to see it now.
