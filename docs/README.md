@@ -1,0 +1,25 @@
+# Introduction
+
+Welcome to the Fetcharr documentation.
+
+## Features
+
+- **Integrates with Sonarr and Radarr**. Easy setup with multiple Radarr and/or Sonarr instances.
+- **Customizable filter rules** to limit what instances can be used for what content.
+- **Cross-platform**. Works on both `amd64`, `arm` and `arm64`.
+- **Frequently syncs your watchlist** allowing users to watch content shortly after adding it.
+
+## Motivation
+
+One of the strongest motivations to make Fetcharr was to get a more customizable experience, than what other solutions could offer. Having one Sonarr/Radarr instance for English content and another for anime was the primary goal.
+
+## Contributing
+
+Fetcharr is a simple hobby project. It is not meant to be anything more than that. If you have an interest in contributing, we'd love to have you on board!
+
+But, it should be noted that Fetcharr is nowhere near the first iteration of this concept. Below are some projects that Fetcharr took inspiration from, which you should consider helping, as well:
+ - [Overseerr](https://github.com/sct/overseerr), by [Ryan Cohen](https://github.com/sct)
+ - [Watchlistarr](https://github.com/nylonee/watchlistarr), by [Nihal Mirpuri](https://github.com/nylonee)
+ - [Recyclarr](https://github.com/recyclarr/recyclarr), by [Robert Dailey](https://github.com/rcdailey)
+
+All of the projects above are made by very smart people, who have contributed hundreds of hours of their own free time. Consider helping them out instead, if you're interested in contributing to open-source.
