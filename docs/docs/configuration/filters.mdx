@@ -1,0 +1,92 @@
+---
+id: filters
+sidebar_position: 4
+---
+
+# Filters
+
+Filters are the strongest part about Fetcharr. They allow you to limit what content goes to what instance or even outright limit what content gets added.
+Filters compose a rule set, which all content must pass through before getting added to an instance. They're defined as such:
+
+```yaml
+filters:
+  genre:
+    - Genre 1
+    - Genre 2
+    - Genre 3
+  certification:
+    - TV-7
+    - TV-MA
+    - R
+```
+
+For a piece of content to be added to the instance, it must have at least one genre in common with `genre` (unless `genre` is empty) and must have a certification which is listed in `certification` (unless `certification` is empty).
+
+## How Fetcharr selects an instance
+
+When some content is being passed to Fetcharr, it looks through all instances to see which one is the most appropriate for the given content. It goes as follows:
+
+1. Require instance to be enabled.
+2. Check filters of the instance. For each filter group (genre, certification, etc.):
+    1. If the filter group is empty, it is implicitly allowed.
+    2. If the filter group is not empty and contains the content value, it is explicitly allowed.
+    3. If the filter group is not empty and does not contain the content value, it is disallowed.
+3. Fetcharr will prefer instances which explicitly allow the content.
+    1. If none are found, it falls back to instances which implicitly allow the content.
+    2. If still none are found, the content is not added.
+4. If one or more instances have the same amount of explicit allowance, the first one in the configuration is picked. The same goes for implicit allowance.
+
+What Fetcharr does in practice is "scoring" instances on their allowance to the content.
+
+- If a filter group explicitly allows the content, it gets 10 points.
+- If a filter group implicitly allows the content, it gets 5 points.
+- If a filter group disallows the content, it loses 100 points.
+
+Fetcharr then picks the instance with the highest score.
+
+## Example
+
+Given three Sonarr instances with the given filters:
+
+```yaml title="config.yaml"
+sonarr:
+  default:
+    [...]
+    filters:
+      genre: []
+      certification: []
+
+  kids-content:
+    [...]
+    filters:
+      genre: []
+      certification:
+        - TV-Y
+        - TV-Y7
+        - TV-G
+        - G
+        - PG
+
+  dad-night:
+    [...]
+    filters:
+      genre:
+        - action
+        - history
+        - war
+      certification:
+        - TV-MA
+        - PG-13
+        - TV-14
+        - R
+        - NC-17
+```
+
+These shows would be filtered as such:
+
+| Genres                   | Certification | Instance selected by Fetcharr   |
+| ------------------------ | ------------- | ------------------------------- |
+| romance, drama, western  | TV-14         | `default`, since none of the genres are allowed by `dad-night`. |
+| adventure, anime         | PG            | `kids-content`, as PG is explicitly allowed. |
+| war, horror              | R             | `dad-night`, since war content and R-rated content are explicitly allowed. |
+| action                   | PG            | `default`, since `dad-night` doesn't allow PG. |

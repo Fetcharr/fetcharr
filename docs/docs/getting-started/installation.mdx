@@ -1,0 +1,87 @@
+---
+id: installation
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Installation
+
+Lists all the available options for installing/building Fetcharr. Some of these might not be supported by us, but we might still be able to help!
+
+:::warning
+
+**Fetcharr is still early in development.** If you would like to help test the bleeding edge, please use the image `fetcharr/fetcharr:develop`!
+
+:::
+
+## Docker
+
+:::warning
+
+Be sure to replace `/path/to/appdata/config` with a valid host directory path. If the path is invalid, Fetcharr will not be able to start the container properly.
+
+:::
+
+<Tabs>
+  <TabItem value="docker-cli" label="Docker CLI" default>
+    To start Fetcharr with Docker CLI, run the following command:
+
+    ```bash
+    docker run -d \
+        --name fetcharr \
+        -e TZ=Europe/Copenhagen \
+        -v /path/to/appdata/config:/config \
+        --restart unless-stopped \
+        fetcharr/fetcharr:latest
+    ```
+  </TabItem>
+  <TabItem value="docker-compose" label="Docker Compose">
+    For a declarative approach to starting Fetcharr, you can use Docker Compose, like so:
+
+    ```yaml title="compose.yaml"
+    services:
+        fetcharr:
+            image: fetcharr/fetcharr:latest
+            container_name: fetcharr
+            environment:
+            - TZ=Europe/Copenhagen
+            volumes:
+            - /path/to/appdata/config:/config
+            restart: unless-stopped
+    ```
+
+    Then, to start Fetcharr:
+
+    ```bash
+    docker-compose up -d
+    ```
+  </TabItem>
+</Tabs>
+
+## From source
+
+:::danger
+
+While building the project from source can be useful for trying out bleeding-edge features, **it is not recommended for production use.**
+
+:::
+
+First, clone down the repository and checkout the branch you'd like to build:
+
+```bash
+git clone -b BRANCH_NAME https://github.com/fetcharr/fetcharr
+```
+
+Afterwards, build the Docker image using [NUKE](https://nuke.build):
+
+```bash
+./build.cmd BuildImage # or `nuke BuildImage`, if you have it installed
+```
+
+:::info
+
+You don't need to have NUKE installed for `build.cmd` to work.
+
+:::
