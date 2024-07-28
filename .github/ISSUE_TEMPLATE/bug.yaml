@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-issue-forms.json
+
+name: 🐛 Bug Report
+description: Report a problem
+labels: ['type:bug']
+body:
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an existing issue already exists for your issue.
+      options:
+        - label: I have searched for existing issues.
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please provide a clear description of the issue.
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of Fetcharr is the issue concerning?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Please provide a list of steps, which will lead to the issue. This will help us narrow down the issue.
+      placeholder: |
+        1. Set X to Y
+        2. Put X into Y
+        3. Start Fetcharr with X
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-service
+    attributes:
+      label: Affected service
+      description: If this issue is about a specific provider, please select it here.
+      options:
+        - Sonarr
+        - Radarr
+        - Plex
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, please provide screenshots depicting the problem.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: If applicable, please provide log output relevant to the problem.
+      render: shell
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: If you have any additional information or media which is relevant, please provide it here.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/fetcharr/fetcharr/blob/develop/CODE_OF_CONDUCT.md)
+      options:
+        - label: I have read and agree to follow Fetcharr's Code of Conduct
+          required: true
