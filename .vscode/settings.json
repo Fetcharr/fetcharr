@@ -28,5 +28,8 @@
       "comments": false,
       "strings": true
     }
+  },
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn"
   }
 }
