@@ -7,7 +7,7 @@ const config: Config = {
   tagline: 'Documentation for Fetcharr',
 
   url: 'https://fetcharr.github.io',
-  baseUrl: '/fetcharr',
+  baseUrl: '/Fetcharr',
   favicon: 'img/favicon.ico',
 
   organizationName: 'fetcharr',
