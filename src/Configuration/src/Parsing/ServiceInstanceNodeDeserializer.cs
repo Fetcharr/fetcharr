@@ -6,7 +6,7 @@ using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
 
-namespace Fetcharr.API.Configuration
+namespace Fetcharr.Configuration.Parsing
 {
     public class ServiceInstanceNodeDeserializer : INodeDeserializer
     {
@@ -21,10 +21,10 @@ namespace Fetcharr.API.Configuration
 
             return expectedType switch
             {
-                Type t when t == typeof(FetcharrRadarrConfiguration[])
+                Type t when t == typeof(Dictionary<string, FetcharrRadarrConfiguration>)
                     => this.Deserialize<FetcharrRadarrConfiguration>(reader, expectedType, nestedObjectDeserializer, out value, objectDeserializer),
 
-                Type t when t == typeof(FetcharrSonarrConfiguration[])
+                Type t when t == typeof(Dictionary<string, FetcharrSonarrConfiguration>)
                     => this.Deserialize<FetcharrSonarrConfiguration>(reader, expectedType, nestedObjectDeserializer, out value, objectDeserializer),
 
                 _ => false
@@ -39,7 +39,7 @@ namespace Fetcharr.API.Configuration
             ObjectDeserializer objectDeserializer)
             where T : FetcharrServiceConfiguration
         {
-            if(expectedType != typeof(T[]))
+            if(expectedType != typeof(Dictionary<string, T>))
             {
                 value = null;
                 return false;
@@ -51,7 +51,7 @@ namespace Fetcharr.API.Configuration
                 return false;
             }
 
-            List<T> result = [];
+            Dictionary<string, T> result = [];
             while(!reader.TryConsume<MappingEnd>(out _))
             {
                 Scalar keyScalar = reader.Consume<Scalar>();
@@ -60,11 +60,11 @@ namespace Fetcharr.API.Configuration
                 if(input is not null)
                 {
                     input.Name = keyScalar.Value;
-                    result.Add(input);
+                    result.Add(input.Name, input);
                 }
             }
 
-            value = result.ToArray();
+            value = result;
             return true;
         }
     }

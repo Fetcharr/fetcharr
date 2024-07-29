@@ -21,11 +21,6 @@ namespace Fetcharr.Models.Configuration
         ///   Gets the base location for configurations.
         /// </summary>
         string ConfigDirectory { get; }
-
-        /// <summary>
-        ///   Gets the absolute path for the Fetcharr configuration file.
-        /// </summary>
-        string ConfigurationFilePath { get; }
     }
 
     /// <summary>
@@ -45,10 +40,6 @@ namespace Fetcharr.Models.Configuration
         public string ConfigDirectory =>
             Environment.GetEnvironmentVariable("FETCHARR_CONFIG_DIR") ??
             Path.Join(this.BaseDirectory, "config");
-
-        /// <inheritdoc />
-        public string ConfigurationFilePath =>
-            Path.Join(this.ConfigDirectory, "config.yaml");
 
         public EnvironmentalAppDataSetup()
         {

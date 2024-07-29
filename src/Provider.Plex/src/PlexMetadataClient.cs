@@ -8,6 +8,7 @@ using Flurl.Http;
 using Flurl.Http.Configuration;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Fetcharr.Provider.Plex
 {
@@ -15,12 +16,12 @@ namespace Fetcharr.Provider.Plex
     ///   Client for fetching metadata from Plex.
     /// </summary>
     public class PlexMetadataClient(
-        FetcharrConfiguration configuration,
+        IOptions<FetcharrConfiguration> configuration,
         [FromKeyedServices("metadata")] ICachingProvider cachingProvider)
     {
         private readonly FlurlClient _client =
             new FlurlClient("https://metadata.provider.plex.tv/library/metadata/")
-                .WithHeader("X-Plex-Token", configuration.Plex.ApiToken)
+                .WithHeader("X-Plex-Token", configuration.Value.Plex.ApiToken)
                 .WithHeader("X-Plex-Client-Identifier", "fetcharr")
                 .WithSettings(opts => opts.JsonSerializer = new DefaultJsonSerializer(new JsonSerializerOptions
                 {

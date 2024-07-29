@@ -3,6 +3,7 @@ using Fetcharr.Provider.Sonarr.Models;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Fetcharr.Provider.Sonarr
 {
@@ -15,7 +16,7 @@ namespace Fetcharr.Provider.Sonarr
 
         public SonarrClientCollection(
             IServiceProvider provider,
-            FetcharrConfiguration configuration,
+            IOptions<FetcharrConfiguration> configuration,
             ILogger<SonarrClientCollection> logger)
             : base(SonarrClientCollection.Construct(configuration, provider))
             => this._logger = logger;
@@ -59,10 +60,10 @@ namespace Fetcharr.Provider.Sonarr
             .FirstOrDefault()?.Client;
 
         private static IEnumerable<SonarrClient> Construct(
-            FetcharrConfiguration configuration,
+            IOptions<FetcharrConfiguration> configuration,
             IServiceProvider provider) =>
-            configuration.Sonarr
-                .Where(v => v.Enabled)
-                .Select(config => ActivatorUtilities.CreateInstance<SonarrClient>(provider, config));
+            configuration.Value.Sonarr
+                .Where(v => v.Value.Enabled)
+                .Select(config => ActivatorUtilities.CreateInstance<SonarrClient>(provider, config.Value));
     }
 }

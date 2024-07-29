@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
-
 using Fetcharr.Models.Configuration.Plex;
 using Fetcharr.Models.Configuration.Radarr;
 using Fetcharr.Models.Configuration.Sonarr;
 
 using YamlDotNet.Serialization;
+
+using static System.StringComparer;
 
 namespace Fetcharr.Models.Configuration
 {
@@ -16,22 +16,25 @@ namespace Fetcharr.Models.Configuration
         /// <summary>
         ///   Gets or sets the configuration for Plex within Fetcharr.
         /// </summary>
-        [Required]
         [YamlMember(Alias = "plex")]
         public FetcharrPlexConfiguration Plex { get; set; } = new();
 
         /// <summary>
         ///   Gets or sets the configuration for Radarr instances within Fetcharr.
         /// </summary>
-        [Required]
         [YamlMember(Alias = "radarr")]
-        public FetcharrRadarrConfiguration[] Radarr { get; set; } = [];
+        public Dictionary<string, FetcharrRadarrConfiguration> Radarr { get; set; } = new(InvariantCultureIgnoreCase);
 
         /// <summary>
         ///   Gets or sets the configuration for Sonarr instances within Fetcharr.
         /// </summary>
-        [Required]
         [YamlMember(Alias = "sonarr")]
-        public FetcharrSonarrConfiguration[] Sonarr { get; set; } = [];
+        public Dictionary<string, FetcharrSonarrConfiguration> Sonarr { get; set; } = new(InvariantCultureIgnoreCase);
+
+        /// <summary>
+        ///   Gets or sets a list of inclusions for the configuration.
+        /// </summary>
+        [YamlMember(Alias = "include")]
+        public List<ConfigurationInclude> Includes { get; set; } = [];
     }
 }
