@@ -12,6 +12,7 @@
     "*.Build.targets": "xml",
     "*.slnf": "json",
     "*-schema.json": "jsonc",
+    "*.mdx": "markdown",
   },
   "dotnet.defaultSolution": "src/Benzin.sln",
   "markdown.styles": [
@@ -30,7 +31,8 @@
     }
   },
   "[markdown]": {
-    "editor.wordWrap": "wordWrapColumn"
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 120
   },
   "yaml.customTags": [
     "env_var",
