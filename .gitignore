@@ -480,4 +480,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # Configuration files for Fetcharr
-/config.yaml
+/fetcharr.yaml

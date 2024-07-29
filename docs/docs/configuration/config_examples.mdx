@@ -11,7 +11,7 @@ This page lists various scenarios supported by Fetcharr, which might come in han
 
 This method functions on both Radarr and Sonarr instances. It separates anime content from other content and sends them to different instances. This can help prevent clutter in your Sonarr and/or Radarr instances.
 
-```yaml title="config.yaml"
+```yaml title="fetcharr.yaml"
 sonarr:
   default:
     base_url: http://localhost:8989
@@ -40,7 +40,7 @@ Fetcharr will prefer the instance *explicitly* allows anime, as opposed to the i
 
 This method functions on both Radarr and Sonarr instances. It separates content for children into a separate instance, allowing for less clutter. It functions very similar to [anime-only instances](#limit-an-instance-to-anime-only).
 
-```yaml title="config.yaml"
+```yaml title="fetcharr.yaml"
 sonarr:
   default:
     base_url: http://localhost:8989
