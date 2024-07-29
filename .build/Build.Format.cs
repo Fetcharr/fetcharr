@@ -12,6 +12,5 @@ partial class Build : NukeBuild
                 .SetProject(SolutionFilePath)
                 .SetNoRestore(true)
                 .SetSeverity(DotNetFormatSeverity.error)
-                .AddExclude("src/Cache/SQLite/src/Migrations/*.cs")
                 .SetVerifyNoChanges(true)));
 }
