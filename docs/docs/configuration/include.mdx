@@ -1,0 +1,129 @@
+---
+id: include
+sidebar_position: 8
+---
+
+# Include
+
+If you want to split your configuration file up into separate files, you can do that with YAML includes. It works by defining an include from the root configuration (e.g. `fletcharr.yaml`). From there, you can include from within your inclusions.
+
+## Syntax
+
+```yaml
+include:
+  - config: sonarr.yaml
+  - config: radarr.yaml
+```
+
+where `config` is the path to some other configuration file that you'd like to include.
+
+Includes support both absolute and relative paths (relative from the including file), which means you can also group configurations into folders, like so:
+
+```yaml title="fetcharr.yaml"
+include:
+  - config: plex.yaml
+  - config: sonarr/default.yaml
+  - config: sonarr/anime.yaml
+  - config: radarr/default.yaml
+  - config: radarr/anime.yaml
+```
+
+## Merge and union
+
+While you'd mostly want to include separate services and/or properties, you can also use includes to merge configurations. There are different behaviours for merging configurations, depending on the property type:
+
+- **Scalar**\
+  Scalars are primitives, such as strings, numbers and booleans.
+  ```yaml
+  boolean: false
+  string: Some string
+  number: 13
+  ```
+
+- **Sequence**\
+  Sequences are really just ordered lists with 0 or more items.
+  ```yaml
+  - item 1
+  - item 2
+  - item 3
+  ```
+
+- **Mapping**\
+  Mappings are key-value collections, where each key is unique within the mapping. Mappings have 0 or more items.
+  ```yaml
+  item1: value
+  item2: value
+  item3: value
+  ```
+
+When talking about merging, we define two different sets: `A` and `B`. When we include a configuration file, the *including* file is `A`, while the *included* file is `B`.
+
+For example, given a file called `root.yaml`:
+```yaml title="root.yaml"
+include:
+  - config: node.yaml
+```
+
+`root.yaml` would be `A`, since it includes `node.yaml`. Likewise, `node.yaml` would be `B`, as it's the file getting included.
+
+### Replace
+
+When merging two *scalars*, `B` will always override `A`.
+
+```yaml title="A.yaml"
+api_token: Some Token
+```
+
+```yaml title="B.yaml"
+api_token: Some Other Token
+```
+
+```yaml title="A ∪ B.yaml"
+api_token: Some Other Token
+```
+
+### Add
+
+When merging two *sequences*, `B` will be appended onto `A`, making a new concatenated sequence.
+
+```yaml title="A.yaml"
+genre:
+  - anime
+  - action
+```
+
+```yaml title="B.yaml"
+genre:
+  - fantasy
+  - horses
+```
+
+```yaml title="A ∪ B.yaml"
+genre:
+  - anime
+  - action
+  - fantasy
+  - horses
+```
+
+### Union / Join
+
+When merging two *mappings*, the behaviour depends on the existance of keys from `B` inside of `A`. For any given key, `K`, with a value, `V`, inside of `B`:
+ - **Union**: if `K` exists within `A`, the property is merged depending on it's type (which might be either [replace](#replace), [add](#add), [join](#union--join) or even another [union](#union--join)).
+ - **Join**: if `K` does not exist within `A`, `V` is added onto `A`.
+
+```yaml title="A.yaml"
+sonarr:
+  base_url: http://localhost:7878
+```
+
+```yaml title="B.yaml"
+sonarr:
+  api_key: 5aec487a70b5417e880d3923e4786d18
+```
+
+```yaml title="A ∪ B.yaml"
+sonarr:
+  base_url: http://localhost:7878
+  api_key: 5aec487a70b5417e880d3923e4786d18
+```

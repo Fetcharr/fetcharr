@@ -1,0 +1,48 @@
+---
+id: environment-variables
+sidebar_position: 6
+---
+
+# Environment Variables
+
+Environment variables can be used in place of defining values in your configuration file directly. This may be useful to you, if you:
+- want to make your configuration more dynamic,
+- want to define some variables in your `compose.yaml` file,
+- want to hide sensitive information (although [secrets](secrets) might be a better fit).
+
+The main downside of environment variables is that you can only define scalar values in YAML. Lists and maps are not supported[^1].
+
+## Syntax
+
+```yaml
+!env_var ENV_VAR_NAME default_value
+```
+
+- `ENV_VAR_NAME` is the name of the environment variable to substitute in, on configuration parse. It is case-sensitive.
+- `default_value` is optional, allowing you define a fallback value, in case `ENV_VAR_NAME` is undefined or empty.
+
+## Example
+
+Given this sample environment:
+```bash
+RADARR_BASE_URL="http://localhost:7878"
+RADARR_API_KEY="5aec487a70b5417e880d3923e4786d18"
+```
+
+A configuration file like this:
+```yaml
+radarr:
+  default:
+    base_url: !env_var RADARR_BASE_URL
+    api_key: !env_var RADARR_API_KEY
+```
+
+would effectively be replaced with:
+```yaml
+radarr:
+  default:
+    base_url: http://localhost:7878
+    api_key: 5aec487a70b5417e880d3923e4786d18
+```
+
+[^1]: You can still use environment variables within lists, but it cannot stand in place of the entire list.

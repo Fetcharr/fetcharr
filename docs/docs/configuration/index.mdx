@@ -5,10 +5,16 @@ sidebar_position: 1
 
 # Configuration
 
-Fetcharr takes use of YAML for configuration. It allows for easy and flexible configuration, without having to configure everything in a UI.
+Fetcharr takes use of YAML for configuration. It allows for easy and flexible configuration, without having to configure everything in a UI. Fetcharr has some extra capabilities[^attribution], which allow for more flexability:
+- You can split up your configuration file using [YAML includes](include), allowing you to segment some configuration properties into their own files. That way, you can have a configuration file for each type of instance.
+- You can specify configuration properties outside of your configurtion file. Fetcharr has support for reading [environment variables](environment-variables) and [secrets](secrets), to prevent leaking API keys and other sensitive information.
 
 To get started, head over to [Basic Setup](./basic-setup).
 
 ## Schema Validation
 
 Go to [Schema Validation](./schema-validation) for detailed instructions.
+
+[^attribution]: Some of these features - notibly secrets, environment variables and includes - were heavily inspired by
+    the [Recyclarr](https://github.com/recyclarr/recyclarr) project, as listed on [Introduction](/index.mdx#contributing).
+    Their implementation is nicely implemented, easy to use and genuinely useful.

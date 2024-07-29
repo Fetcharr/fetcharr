@@ -3,7 +3,30 @@ id: basic-setup
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Basic Setup
+
+For Fetcharr to start up, you need to have a `fetcharr.yaml` file in your configuration directory. Your configuration directory will change depending on how you installed Fetcharr:
+
+<Tabs>
+  <TabItem value="docker" label="Docker" default>
+    The configuration directory is located at `/config` inside of the Docker container. Check your volume mapping to see where it is mapped to.
+  </TabItem>
+  <TabItem value="source" label="From source">
+    The configuration directory will be located in your local application data directory, which depends on your OS:
+    - **Windows**: ``C:/Users/<user>/AppData/Local/Fetcharr/config``
+    - **macOS**: ``	/Users/<user>/.local/share/Fetcharr/config``
+    - **Linux**: ``	/home/<user>/.local/share/Fetcharr/config``
+  </TabItem>
+</Tabs>
+
+:::info
+
+While this documentation uses `.yaml` extensions, you can use `.yml` completely interchangeably.
+
+:::
 
 ## Plex
 
