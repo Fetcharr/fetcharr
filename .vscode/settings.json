@@ -31,5 +31,9 @@
   },
   "[markdown]": {
     "editor.wordWrap": "wordWrapColumn"
-  }
+  },
+  "yaml.customTags": [
+    "env_var",
+    "secret",
+  ]
 }

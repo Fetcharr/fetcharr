@@ -4,20 +4,22 @@ using Fetcharr.Models.Configuration;
 
 using Flurl.Http;
 
+using Microsoft.Extensions.Options;
+
 namespace Fetcharr.Provider.Plex
 {
     /// <summary>
     ///   Client for interacting with Plex.
     /// </summary>
     public class PlexClient(
-        FetcharrConfiguration configuration,
+        IOptions<FetcharrConfiguration> configuration,
         PlexMetadataClient metadataClient,
         PlexWatchlistClient watchlistClient)
         : ExternalProvider
     {
         private readonly FlurlClient _client =
             new FlurlClient("https://plex.tv/")
-                .WithHeader("X-Plex-Token", configuration.Plex.ApiToken)
+                .WithHeader("X-Plex-Token", configuration.Value.Plex.ApiToken)
                 .WithHeader("X-Plex-Client-Identifier", "fetcharr");
 
         /// <inheritdoc />

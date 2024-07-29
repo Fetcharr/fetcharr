@@ -21,7 +21,6 @@ namespace Fetcharr.API.Services
             logger.LogInformation("  Base directory: {Path}", appDataSetup.BaseDirectory);
             logger.LogInformation("  Cache directory: {Path}", appDataSetup.CacheDirectory);
             logger.LogInformation("  Config directory: {Path}", appDataSetup.ConfigDirectory);
-            logger.LogInformation("  Config file: {Path}", appDataSetup.ConfigurationFilePath);
 
             await Task.CompletedTask;
         }

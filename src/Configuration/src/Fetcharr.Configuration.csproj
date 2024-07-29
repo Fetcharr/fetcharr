@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Fetcharr.Configuration</PackageId>
+    <AssemblyName>Fetcharr.Configuration</AssemblyName>
+    <RootNamespace>Fetcharr.Configuration</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="YamlDotNet" Version="16.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../Models/src/Fetcharr.Models.csproj" />
+  </ItemGroup>
+
+</Project>

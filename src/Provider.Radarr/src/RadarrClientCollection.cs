@@ -3,6 +3,7 @@ using Fetcharr.Provider.Radarr.Models;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Fetcharr.Provider.Radarr
 {
@@ -15,7 +16,7 @@ namespace Fetcharr.Provider.Radarr
 
         public RadarrClientCollection(
             IServiceProvider provider,
-            FetcharrConfiguration configuration,
+            IOptions<FetcharrConfiguration> configuration,
             ILogger<RadarrClientCollection> logger)
             : base(RadarrClientCollection.Construct(configuration, provider))
             => this._logger = logger;
@@ -27,11 +28,11 @@ namespace Fetcharr.Provider.Radarr
             => this._logger = logger;
 
         private static IEnumerable<RadarrClient> Construct(
-            FetcharrConfiguration configuration,
+            IOptions<FetcharrConfiguration> configuration,
             IServiceProvider provider) =>
-            configuration.Radarr
-                .Where(v => v.Enabled)
-                .Select(config => ActivatorUtilities.CreateInstance<RadarrClient>(provider, config));
+            configuration.Value.Radarr
+                .Where(v => v.Value.Enabled)
+                .Select(config => ActivatorUtilities.CreateInstance<RadarrClient>(provider, config.Value));
 
         /// <inheritdoc cref="RadarrClient.GetMovieByImdbAsync" />
         public async Task<RadarrMovie?> GetMovieByTmdbAsync(string tmdbId)

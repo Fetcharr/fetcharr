@@ -1,10 +1,10 @@
-using Fetcharr.API.Configuration;
 using Fetcharr.API.Extensions;
 using Fetcharr.API.Services;
 using Fetcharr.Cache.Core.Extensions;
 using Fetcharr.Cache.Hybrid.Extensions;
 using Fetcharr.Cache.InMemory.Extensions;
-using Fetcharr.Models.Configuration;
+using Fetcharr.Configuration.Extensions;
+using Fetcharr.Models.Extensions;
 using Fetcharr.Shared.Http.Extensions;
 
 namespace Fetcharr.API
@@ -23,21 +23,20 @@ namespace Fetcharr.API
                     options.TimestampFormat = "HH:mm:ss ";
                 }));
 
-            builder.Services.AddSingleton<FetcharrConfiguration>(provider =>
-                ActivatorUtilities.CreateInstance<ConfigurationParser>(provider).ReadConfig());
-
             builder.Services.AddCaching(opts => opts
                 .UseHybrid("metadata", opts => opts.SQLite.DatabasePath = "metadata.sqlite")
                 .UseInMemory("watchlist"));
 
             builder.Services
-                .AddSingleton<IAppDataSetup, EnvironmentalAppDataSetup>()
-                .AddHostedService<StartupInformationService>()
+                .AddDefaultEnvironment()
+                .AddConfiguration()
+                .AddValidation()
                 .AddPlexServices()
                 .AddSonarrServices()
                 .AddRadarrServices()
                 .AddPingingServices()
-                .AddFlurlErrorHandler();
+                .AddFlurlErrorHandler()
+                .AddHostedService<StartupInformationService>();
 
             builder.Services.AddControllers();
 

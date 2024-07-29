@@ -1,9 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
-  "$id": "https://raw.githubusercontent.com/fetcharr/fetcharr/main/src/API/src/config-schema.json",
+  "$id": "https://raw.githubusercontent.com/fetcharr/fetcharr/main/config-schema.json",
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "include": {
+      "$ref": "#/$defs/include_list"
+    },
     "plex": {
       "$ref": "#/$defs/plex"
     },
@@ -25,6 +28,29 @@
     }
   },
   "$defs": {
+    "include_file": {
+      "type": "object",
+      "description": "Include a separate configuration file into the current one.",
+      "additionalProperties": false,
+      "anyOf": [
+        {"required": [ "config" ]}
+      ],
+      "properties": {
+        "config": {
+          "type": "string",
+          "description": "Include a separate configuration file, relative to the current one.\nCan also be absolute."
+        }
+      }
+    },
+    "include_list": {
+      "type": "array",
+      "minItems": 1,
+      "description": "thingy dingy",
+      "additionalItems": false,
+      "items": {
+        "$ref": "#/$defs/include_file"
+      }
+    },
     "enabled": {
       "type": "boolean",
       "default": true,

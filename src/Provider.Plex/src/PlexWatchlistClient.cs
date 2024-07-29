@@ -7,6 +7,7 @@ using Fetcharr.Provider.Plex.Models;
 using Flurl.Http;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Fetcharr.Provider.Plex
 {
@@ -14,12 +15,12 @@ namespace Fetcharr.Provider.Plex
     ///   Client for fetching watchlists from Plex.
     /// </summary>
     public class PlexWatchlistClient(
-        FetcharrConfiguration configuration,
+        IOptions<FetcharrConfiguration> configuration,
         [FromKeyedServices("watchlist")] ICachingProvider cachingProvider)
     {
         private readonly FlurlClient _client =
             new FlurlClient("https://metadata.provider.plex.tv/library/sections/watchlist/")
-                .WithHeader("X-Plex-Token", configuration.Plex.ApiToken)
+                .WithHeader("X-Plex-Token", configuration.Value.Plex.ApiToken)
                 .WithHeader("X-Plex-Client-Identifier", "fetcharr");
 
         /// <summary>
