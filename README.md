@@ -62,7 +62,7 @@ services:
     restart: unless-stopped
 ```
 
-Copy the [`config.example.yaml`](./config.example.yaml)-file to your configuration folder as `config.yaml` and edit it to your liking.
+Copy the [`fetcharr.example.yaml`](./fetcharr.example.yaml)-file to your configuration folder as `fetcharr.yaml` and edit it to your liking.
 When you've changed the config-file, remember to restart Fetcharr for it to take effect.
 
 ## 📝 Contributing

@@ -8,7 +8,7 @@ services:
       - 8080:8080
     volumes:
       - type: bind
-        source: ./config.yaml
-        target: /config/config.yaml
+        source: ./fetcharr.yaml
+        target: /config/fetcharr.yaml
         read_only: true
     restart: unless-stopped
