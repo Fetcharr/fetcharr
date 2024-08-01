@@ -1,7 +1,7 @@
 using Fetcharr.Models.Configuration;
 using Fetcharr.Models.Configuration.Radarr;
 using Fetcharr.Provider.Radarr.Models;
-using Fetcharr.Testing.Services;
+using Fetcharr.Testing.Layers;
 
 namespace Fetcharr.Provider.Radarr.Tests.RadarrClientCollectionTests
 {

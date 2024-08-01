@@ -1,7 +1,7 @@
 
-using Fetcharr.Testing.Templates.Extensions;
+using Fetcharr.Testing.Containers.Extensions;
 
-namespace Fetcharr.Testing.Templates.Testcontainers.Radarr
+namespace Fetcharr.Testing.Containers.Radarr
 {
     /// <inheritdoc cref="ContainerBuilder{TBuilderEntity, TContainerEntity, TConfigurationEntity}" />
     public sealed class RadarrBuilder : ContainerBuilder<RadarrBuilder, RadarrContainer, RadarrConfiguration>
