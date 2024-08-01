@@ -6,6 +6,9 @@
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "overrideCommand": true,
   // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
   // Configure tool-specific properties.
   "customizations": {
     // Configure properties specific to VS Code.
