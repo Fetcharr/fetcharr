@@ -11,10 +11,10 @@
     "*.Build.props": "xml",
     "*.Build.targets": "xml",
     "*.slnf": "json",
-    "*-schema.json": "jsonc",
+    "*.json": "jsonc",
     "*.mdx": "markdown",
   },
-  "dotnet.defaultSolution": "src/Benzin.sln",
+  "dotnet.defaultSolution": "src/Fetcharr.sln",
   "markdown.styles": [
       "https://use.fontawesome.com/releases/v5.7.1/css/all.css"
   ],
@@ -33,6 +33,14 @@
   "[markdown]": {
     "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 120
+  },
+  "[jsonc]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "full",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
   },
   "yaml.customTags": [
     "env_var",
