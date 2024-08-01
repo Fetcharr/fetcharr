@@ -39,15 +39,19 @@ It is also recommended to add new tests, if you're implementing a new feature.
 
 ## Development Setup
 
-There are a few ways of setting up the project for development.
+There are a few ways of setting up the project for development:
+- [Installing all tools locally](#required-tools)
+- [or by using Github Codespaces](#single-click-setup)
 
-### Required tools:
+### Developing locally
+
+#### Required Tools
 - Code editor
   - We recommend [VS Code](https://code.visualstudio.com/). Upon opening the project, a few extensions will be automatically recommended for install.
 - [.NET SDK 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [Git](https://git-scm.com/downloads)
 
-### Getting started
+#### Getting started
 
 1. Fork the repository to your own account and clone it:
     ```sh
@@ -89,6 +93,12 @@ dotnet run --project src/API/src/Fetcharr.API.csproj
     git rebase upstream/develop
     git push origin BRANCH_NAME -f
     ```
+
+### Single-click setup
+
+If you prefer not installing anything locally, you can open the project in Github Codespaces by clicking the button below:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Fetcharr/fetcharr/tree/develop?quickstart=1)
 
 ## Code Guidelines
 
