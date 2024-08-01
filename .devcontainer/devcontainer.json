@@ -30,7 +30,7 @@
     "3000": {
       "label": "Docusaurus",
       "protocol": "http",
-      "onAutoForward": "openBrowserOnce"
+      "onAutoForward": "ignore"
     },
     "8080": {
       "label": "Fetcharr API",
