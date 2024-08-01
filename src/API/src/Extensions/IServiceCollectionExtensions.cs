@@ -1,12 +1,29 @@
 using Fetcharr.API.Services;
+using Fetcharr.Configuration.Extensions;
+using Fetcharr.Models.Extensions;
 using Fetcharr.Provider.Plex.Extensions;
 using Fetcharr.Provider.Radarr.Extensions;
 using Fetcharr.Provider.Sonarr.Extensions;
+using Fetcharr.Shared.Http.Extensions;
 
 namespace Fetcharr.API.Extensions
 {
     public static partial class IServiceCollectionExtensions
     {
+        /// <summary>
+        ///   Registers all Fetcharr services onto the given <see cref="IServiceCollection"/>.
+        /// </summary>
+        public static IServiceCollection AddFetcharr(this IServiceCollection services) => services
+            .AddDefaultEnvironment()
+            .AddConfiguration()
+            .AddValidation()
+            .AddPlexServices()
+            .AddSonarrServices()
+            .AddRadarrServices()
+            .AddPingingServices()
+            .AddFlurlErrorHandler()
+            .AddHostedService<StartupInformationService>();
+
         /// <summary>
         ///   Registers Plex services onto the given <see cref="IServiceCollection"/>.
         /// </summary>

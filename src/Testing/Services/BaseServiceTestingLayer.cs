@@ -1,6 +1,5 @@
 using Fetcharr.API.Extensions;
 using Fetcharr.Provider;
-using Fetcharr.Shared.Http.Extensions;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,12 +9,7 @@ namespace Fetcharr.Testing.Services
         where TService : ExternalProvider
     {
         private readonly IServiceProvider _provider = new ServiceCollection()
-            .AddLogging()
-            .AddPlexServices()
-            .AddSonarrServices()
-            .AddRadarrServices()
-            .AddPingingServices()
-            .AddFlurlErrorHandler()
+            .AddFetcharr()
             .BuildServiceProvider();
 
         protected T CreateService<T>(params object[] parameters)
