@@ -12,8 +12,7 @@
       "Provider\\src\\Fetcharr.Provider.csproj",
       "Provider.Plex\\src\\Fetcharr.Provider.Plex.csproj",
       "Provider.Radarr\\src\\Fetcharr.Provider.Radarr.csproj",
-      "Provider.Sonarr\\src\\Fetcharr.Provider.Sonarr.csproj",
-      "Provider.Shared\\src\\Fetcharr.Provider.Shared.csproj"
+      "Provider.Sonarr\\src\\Fetcharr.Provider.Sonarr.csproj"
     ]
   }
 }
