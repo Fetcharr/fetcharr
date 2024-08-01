@@ -4,10 +4,7 @@
     <RootNamespace>Fetcharr.Models</RootNamespace>
     <PackageId>Fetcharr.Models.Tests</PackageId>
     <AssemblyName>Fetcharr.Models.Tests</AssemblyName>
+    <ProjectType>Test</ProjectType>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="../src/Fetcharr.Models.csproj" />
-  </ItemGroup>
 
 </Project>

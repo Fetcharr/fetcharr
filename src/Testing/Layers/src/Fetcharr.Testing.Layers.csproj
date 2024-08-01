@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Testing.Layers</PackageId>
     <AssemblyName>Fetcharr.Testing.Layers</AssemblyName>
     <RootNamespace>Fetcharr.Testing.Layers</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

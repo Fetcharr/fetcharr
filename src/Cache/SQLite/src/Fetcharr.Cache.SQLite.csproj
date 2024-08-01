@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Cache.SQLite</PackageId>
     <AssemblyName>Fetcharr.Cache.SQLite</AssemblyName>
     <RootNamespace>Fetcharr.Cache.SQLite</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

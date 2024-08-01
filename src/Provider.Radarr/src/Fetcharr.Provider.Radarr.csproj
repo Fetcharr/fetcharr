@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Provider.Radarr</PackageId>
     <AssemblyName>Fetcharr.Provider.Radarr</AssemblyName>
     <RootNamespace>Fetcharr.Provider.Radarr</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

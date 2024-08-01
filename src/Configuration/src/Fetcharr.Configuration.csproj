@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Configuration</PackageId>
     <AssemblyName>Fetcharr.Configuration</AssemblyName>
     <RootNamespace>Fetcharr.Configuration</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

@@ -4,10 +4,10 @@
     <RootNamespace>Fetcharr.Provider.Radarr</RootNamespace>
     <PackageId>Fetcharr.Provider.Radarr.Tests</PackageId>
     <AssemblyName>Fetcharr.Provider.Radarr.Tests</AssemblyName>
+    <ProjectType>Test</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Fetcharr.Provider.Radarr.csproj" />
     <ProjectReference Include="..\..\Testing\Layers\src\Fetcharr.Testing.Layers.csproj" />
   </ItemGroup>
 
