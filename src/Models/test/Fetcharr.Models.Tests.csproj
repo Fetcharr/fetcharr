@@ -6,4 +6,8 @@
     <AssemblyName>Fetcharr.Models.Tests</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../src/Fetcharr.Models.csproj" />
+  </ItemGroup>
+
 </Project>
