@@ -22,6 +22,12 @@ namespace Fetcharr.API.Extensions
             .AddRadarrServices()
             .AddPingingServices()
             .AddFlurlErrorHandler()
+            .AddLogging(opts =>
+                opts.AddSimpleConsole(opts =>
+                {
+                    opts.SingleLine = true;
+                    opts.IncludeScopes = true;
+                }))
             .AddHostedService<StartupInformationService>();
 
         /// <summary>
