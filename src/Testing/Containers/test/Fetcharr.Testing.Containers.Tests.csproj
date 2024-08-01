@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Fetcharr.Testing.Containers</RootNamespace>
+    <PackageId>Fetcharr.Testing.Containers.Tests</PackageId>
+    <AssemblyName>Fetcharr.Testing.Containers.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Fetcharr.Testing.Containers.csproj" />
+    <ProjectReference Include="..\..\Layers\src\Fetcharr.Testing.Layers.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -10,5 +10,13 @@ namespace Fetcharr.Testing.Containers.Radarr
         : DockerContainer(configuration)
     {
         public readonly RadarrConfiguration Configuration = configuration;
+
+        /// <summary>
+        ///   Gets the base URL for the Radarr endpoint.
+        /// </summary>
+        public string EndpointBase => string.Format(
+            "http://{0}:{1}",
+            this.Hostname,
+            this.GetMappedPublicPort(RadarrBuilder.RadarrPort));
     }
 }

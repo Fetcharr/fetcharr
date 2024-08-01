@@ -71,6 +71,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layers", "Layers", "{4EF7D6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fetcharr.Testing.Layers", "Testing\Layers\src\Fetcharr.Testing.Layers.csproj", "{3725CAD0-E32B-4761-B4B5-23AF833BE663}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fetcharr.Testing.Containers.Tests", "Testing\Containers\test\Fetcharr.Testing.Containers.Tests.csproj", "{445F44E0-BFB2-44DE-91EA-8D521036BE0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,10 @@ Global
 		{3725CAD0-E32B-4761-B4B5-23AF833BE663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3725CAD0-E32B-4761-B4B5-23AF833BE663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3725CAD0-E32B-4761-B4B5-23AF833BE663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{445F44E0-BFB2-44DE-91EA-8D521036BE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{445F44E0-BFB2-44DE-91EA-8D521036BE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{445F44E0-BFB2-44DE-91EA-8D521036BE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{445F44E0-BFB2-44DE-91EA-8D521036BE0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BE9125CB-FFDE-400E-A43C-70A146987832} = {90A90058-5251-4394-8A71-2E6774797107}
@@ -175,5 +181,6 @@ Global
 		{BE6B24CC-F39A-41E8-B70E-A54B756C4113} = {AC490019-1D47-488C-B780-FDCE4141A538}
 		{4EF7D659-33E5-48D0-993D-A73B8D7141C8} = {DD67C737-3D59-496A-AD0C-4EA1F8FDEAEE}
 		{3725CAD0-E32B-4761-B4B5-23AF833BE663} = {4EF7D659-33E5-48D0-993D-A73B8D7141C8}
+		{445F44E0-BFB2-44DE-91EA-8D521036BE0E} = {AC490019-1D47-488C-B780-FDCE4141A538}
 	EndGlobalSection
 EndGlobal
