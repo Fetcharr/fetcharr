@@ -1,0 +1,47 @@
+<Project>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+
+  <!-- Global packages -->
+
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- Source packages -->
+
+  <ItemGroup>
+    <PackageVersion Include="Flurl.Http" Version="4.0.2" />
+    <PackageVersion Include="GitVersion.MsBuild" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.7" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="YamlDotNet" Version="16.0.0" />
+  </ItemGroup>
+
+  <!-- Test packages -->
+
+  <ItemGroup>
+    <PackageVersion Include="FluentAssertions" Version="6.10.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageVersion Include="Moq" Version="4.20.70" />
+    <PackageVersion Include="Snapshooter.Xunit" Version="0.13.0" />
+    <PackageVersion Include="Testcontainers" Version="3.9.0" />
+    <PackageVersion Include="xunit" Version="2.4.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
+  </ItemGroup>
+
+  <!-- Benchmark packages -->
+
+  <ItemGroup>
+    <PackageVersion Include="BenchmarkDotNet" Version="0.13.5" />
+  </ItemGroup>
+
+</Project>
