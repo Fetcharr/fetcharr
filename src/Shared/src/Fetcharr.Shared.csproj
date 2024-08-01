@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Shared</PackageId>
     <AssemblyName>Fetcharr.Shared</AssemblyName>
     <RootNamespace>Fetcharr.Shared</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

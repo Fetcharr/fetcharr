@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Models</PackageId>
     <AssemblyName>Fetcharr.Models</AssemblyName>
     <RootNamespace>Fetcharr.Models</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

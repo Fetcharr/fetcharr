@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Provider.Sonarr</PackageId>
     <AssemblyName>Fetcharr.Provider.Sonarr</AssemblyName>
     <RootNamespace>Fetcharr.Provider.Sonarr</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

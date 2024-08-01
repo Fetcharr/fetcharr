@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Cache.Hybrid</PackageId>
     <AssemblyName>Fetcharr.Cache.Hybrid</AssemblyName>
     <RootNamespace>Fetcharr.Cache.Hybrid</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

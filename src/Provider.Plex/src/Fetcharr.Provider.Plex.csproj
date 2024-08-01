@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Provider.Plex</PackageId>
     <AssemblyName>Fetcharr.Provider.Plex</AssemblyName>
     <RootNamespace>Fetcharr.Provider.Plex</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

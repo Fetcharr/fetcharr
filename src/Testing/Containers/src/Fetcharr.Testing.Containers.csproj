@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Testing.Containers</PackageId>
     <AssemblyName>Fetcharr.Testing.Containers</AssemblyName>
     <RootNamespace>Fetcharr.Testing.Containers</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

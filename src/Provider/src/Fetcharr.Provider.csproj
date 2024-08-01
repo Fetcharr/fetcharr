@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Provider</PackageId>
     <AssemblyName>Fetcharr.Provider</AssemblyName>
     <RootNamespace>Fetcharr.Provider</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

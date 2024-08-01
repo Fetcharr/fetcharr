@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.Cache.Core</PackageId>
     <AssemblyName>Fetcharr.Cache.Core</AssemblyName>
     <RootNamespace>Fetcharr.Cache.Core</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

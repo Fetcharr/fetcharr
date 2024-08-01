@@ -4,6 +4,7 @@
     <PackageId>Fetcharr.API</PackageId>
     <AssemblyName>Fetcharr.API</AssemblyName>
     <RootNamespace>Fetcharr.API</RootNamespace>
+    <ProjectType>Source</ProjectType>
   </PropertyGroup>
 
   <ItemGroup>

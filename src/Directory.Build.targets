@@ -1,0 +1,77 @@
+<Project>
+
+  <Choose>
+    <!--
+      Source projects
+    -->
+
+    <When Condition="'$(ProjectType)' == 'Source'">
+      <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+        <NoWarn>CS1591;CS1573</NoWarn>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+      </PropertyGroup>
+
+      <ItemGroup>
+        <!-- Source package references -->
+        <PackageReference Include="Flurl.Http" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+
+        <!-- Show internals to test projects -->
+        <InternalsVisibleTo Include="$(RootNamespace).Tests" />
+        <InternalsVisibleTo Include="Fetcharr.Testing.Layers" />
+      </ItemGroup>
+    </When>
+
+    <!--
+      Test projects
+    -->
+
+    <When Condition="'$(ProjectType)' == 'Test'">
+      <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <IncludeSymbols>false</IncludeSymbols>
+      </PropertyGroup>
+
+      <ItemGroup>
+        <!-- Reference source project of the test project -->
+        <ProjectReference Include="../src/$(RootNamespace).csproj" />
+
+        <!-- Test package references -->
+        <PackageReference Include="FluentAssertions" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="Moq" />
+        <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.runner.visualstudio">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+      </ItemGroup>
+    </When>
+
+    <!--
+      Benchmark projects
+    -->
+
+    <When Condition="'$(ProjectType)' == 'Benchmark'">
+      <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <IncludeSymbols>false</IncludeSymbols>
+      </PropertyGroup>
+
+      <ItemGroup>
+        <!-- Show internals to test projects -->
+        <InternalsVisibleTo Include="$(RootNamespace).Tests" />
+
+        <!-- Benchmark package references -->
+        <PackageReference Include="BenchmarkDotNet" />
+      </ItemGroup>
+    </When>
+  </Choose>
+
+</Project>
