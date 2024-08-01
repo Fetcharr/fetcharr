@@ -27,17 +27,7 @@ namespace Fetcharr.API
                 .UseHybrid("metadata", opts => opts.SQLite.DatabasePath = "metadata.sqlite")
                 .UseInMemory("watchlist"));
 
-            builder.Services
-                .AddDefaultEnvironment()
-                .AddConfiguration()
-                .AddValidation()
-                .AddPlexServices()
-                .AddSonarrServices()
-                .AddRadarrServices()
-                .AddPingingServices()
-                .AddFlurlErrorHandler()
-                .AddHostedService<StartupInformationService>();
-
+            builder.Services.AddFetcharr();
             builder.Services.AddControllers();
 
             WebApplication app = builder.Build();
