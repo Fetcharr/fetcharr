@@ -2,7 +2,7 @@ using System.Globalization;
 
 using static DotNet.Testcontainers.Guard;
 
-namespace Fetcharr.Testing.Templates.Extensions
+namespace Fetcharr.Testing.Containers.Extensions
 {
     public static partial class ArgumentInfoExtensions
     {

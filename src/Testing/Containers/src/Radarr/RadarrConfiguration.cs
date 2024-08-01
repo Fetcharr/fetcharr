@@ -1,4 +1,4 @@
-namespace Fetcharr.Testing.Templates.Testcontainers.Radarr
+namespace Fetcharr.Testing.Containers.Radarr
 {
     /// <inheritdoc cref="ContainerConfiguration" />
     public sealed class RadarrConfiguration : ContainerConfiguration

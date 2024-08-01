@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 using Moq;
 
-namespace Fetcharr.Testing.Services
+namespace Fetcharr.Testing.Layers
 {
     public class SonarrTestingLayer
         : BaseServiceTestingLayer<SonarrClient>

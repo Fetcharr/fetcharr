@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Fetcharr.Testing.Layers</PackageId>
+    <AssemblyName>Fetcharr.Testing.Layers</AssemblyName>
+    <RootNamespace>Fetcharr.Testing.Layers</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\API\src\Fetcharr.API.csproj" />
+    <ProjectReference Include="..\..\..\Provider\src\Fetcharr.Provider.csproj" />
+    <ProjectReference Include="..\..\..\Provider.Plex\src\Fetcharr.Provider.Plex.csproj" />
+    <ProjectReference Include="..\..\..\Provider.Radarr\src\Fetcharr.Provider.Radarr.csproj" />
+    <ProjectReference Include="..\..\..\Provider.Sonarr\src\Fetcharr.Provider.Sonarr.csproj" />
+    <ProjectReference Include="..\..\..\Models\src\Fetcharr.Models.csproj" />
+    <ProjectReference Include="..\..\..\Shared\src\Fetcharr.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="Testcontainers" Version="3.9.0" />
+  </ItemGroup>
+
+</Project>

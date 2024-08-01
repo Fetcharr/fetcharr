@@ -17,7 +17,8 @@
       "Provider.Sonarr\\src\\Fetcharr.Provider.Sonarr.csproj",
       "Provider.Sonarr\\test\\Fetcharr.Provider.Sonarr.Tests.csproj",
       "Provider.Shared\\src\\Fetcharr.Provider.Shared.csproj",
-      "Provider.Testing\\src\\Fetcharr.Provider.Testing.csproj"
+      "Testing\\Containers\\src\\Fetcharr.Testing.Containers.csproj",
+      "Testing\\Layers\\src\\Fetcharr.Testing.Layers.csproj"
     ]
   }
 }
