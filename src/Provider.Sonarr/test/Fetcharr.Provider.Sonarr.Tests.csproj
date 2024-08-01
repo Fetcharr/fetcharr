@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Testing\Fetcharr.Testing.csproj" />
+    <ProjectReference Include="..\..\Testing\Layers\src\Fetcharr.Testing.Layers.csproj" />
   </ItemGroup>
 
 </Project>

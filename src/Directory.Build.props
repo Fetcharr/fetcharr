@@ -41,7 +41,7 @@
 
   <ItemGroup Condition="'$(IsSourceProject)' == 'true'">
     <InternalsVisibleTo Include="$(RootNamespace).Tests" />
-    <InternalsVisibleTo Include="Fetcharr.Testing" />
+    <InternalsVisibleTo Include="Fetcharr.Testing.Layers" />
   </ItemGroup>
 
   <!-- Test projects -->

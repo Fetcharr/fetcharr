@@ -3,7 +3,7 @@ using Fetcharr.Provider;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Fetcharr.Testing.Services
+namespace Fetcharr.Testing.Layers
 {
     public abstract class BaseServiceTestingLayer<TService>
         where TService : ExternalProvider

@@ -1,7 +1,7 @@
 using Fetcharr.Models.Configuration;
 using Fetcharr.Models.Configuration.Sonarr;
 using Fetcharr.Provider.Sonarr.Models;
-using Fetcharr.Testing.Services;
+using Fetcharr.Testing.Layers;
 
 namespace Fetcharr.Provider.Sonarr.Tests.SonarrClientCollectionTests
 {
