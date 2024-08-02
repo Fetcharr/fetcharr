@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Fetcharr.Testing.Assertions</PackageId>
+    <AssemblyName>Fetcharr.Testing.Assertions</AssemblyName>
+    <RootNamespace>Fetcharr.Testing.Assertions</RootNamespace>
+    <ProjectType>Source</ProjectType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Provider.Radarr\src\Fetcharr.Provider.Radarr.csproj" />
+    <ProjectReference Include="..\..\..\Provider.Sonarr\src\Fetcharr.Provider.Sonarr.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" />
+  </ItemGroup>
+
+</Project>

@@ -46,9 +46,17 @@ namespace Fetcharr.Provider.Radarr
         }
 
         /// <summary>
+        ///   Get all movies from Radarr.
+        /// </summary>
+        public virtual async Task<IEnumerable<RadarrMovie>> GetAllMoviesAsync() =>
+            await this._client
+                .Request("/api/v3/movies")
+                .GetJsonAsync<IEnumerable<RadarrMovie>>();
+
+        /// <summary>
         ///   Get all root folders from Radarr.
         /// </summary>
-        public async Task<IEnumerable<RadarrRootFolder>> GetRootFoldersAsync() =>
+        public virtual async Task<IEnumerable<RadarrRootFolder>> GetRootFoldersAsync() =>
             await this._client
                 .Request("/api/v3/rootfolder")
                 .GetJsonAsync<IEnumerable<RadarrRootFolder>>();
@@ -56,7 +64,7 @@ namespace Fetcharr.Provider.Radarr
         /// <summary>
         ///   Get all quality profiles from Radarr.
         /// </summary>
-        public async Task<IEnumerable<RadarrQualityProfile>> GetQualityProfilesAsync() =>
+        public virtual async Task<IEnumerable<RadarrQualityProfile>> GetQualityProfilesAsync() =>
             await this._client
                 .Request("/api/v3/qualityprofile")
                 .GetJsonAsync<IEnumerable<RadarrQualityProfile>>();
@@ -66,7 +74,7 @@ namespace Fetcharr.Provider.Radarr
         /// </summary>
         /// <param name="term">Search term to query Radarr for.</param>
         /// <returns><see cref="RadarrMovie"/> if the movie was found; otherwise, <see langword="null" />.</returns>
-        public async Task<RadarrMovie?> LookupMovieAsync(string term)
+        public virtual async Task<RadarrMovie?> LookupMovieAsync(string term)
         {
             IEnumerable<RadarrMovie> movie = await this._client
                 .Request("/api/v3/movie/lookup")
@@ -81,7 +89,7 @@ namespace Fetcharr.Provider.Radarr
         /// </summary>
         /// <param name="imdbId">IMDB ID to get the movie from.</param>
         /// <returns><see cref="RadarrMovie"/> if the movie was found; otherwise, <see langword="null" />.</returns>
-        public async Task<RadarrMovie?> GetMovieByImdbAsync(string imdbId)
+        public virtual async Task<RadarrMovie?> GetMovieByImdbAsync(string imdbId)
             => await this.LookupMovieAsync($"imdb:{imdbId}");
 
         /// <summary>
@@ -89,7 +97,7 @@ namespace Fetcharr.Provider.Radarr
         /// </summary>
         /// <param name="tmdbId">TMDB ID to get the movie from.</param>
         /// <returns><see cref="RadarrMovie"/> if the movie was found; otherwise, <see langword="null" />.</returns>
-        public async Task<RadarrMovie?> GetMovieByTmdbAsync(string tmdbId)
+        public virtual async Task<RadarrMovie?> GetMovieByTmdbAsync(string tmdbId)
             => await this.LookupMovieAsync($"tmdb:{tmdbId}");
 
         /// <summary>
@@ -97,7 +105,7 @@ namespace Fetcharr.Provider.Radarr
         /// </summary>
         /// <param name="options">Information about the movie to query for.</param>
         /// <returns><see cref="RadarrMovie"/> if the movie was found; otherwise, <see langword="null" />.</returns>
-        public async Task<RadarrMovie?> GetMovieAsync(RadarrMovieOptions options)
+        public virtual async Task<RadarrMovie?> GetMovieAsync(RadarrMovieOptions options)
         {
             RadarrMovie? movie = await this.GetMovieByTmdbAsync(options.TmdbID);
             if(movie is not null)
@@ -118,7 +126,7 @@ namespace Fetcharr.Provider.Radarr
         /// </summary>
         /// <param name="options">Options and information about the movie.</param>
         /// <returns><see cref="RadarrMovie"/> if the movie was added; otherwise, <see langword="null" />.</returns>
-        public async Task<RadarrMovie?> AddMovieAsync(RadarrMovieOptions options)
+        public virtual async Task<RadarrMovie?> AddMovieAsync(RadarrMovieOptions options)
         {
             RadarrMovie? movie = await this.GetMovieAsync(options);
             if(movie is null)
@@ -203,13 +211,13 @@ namespace Fetcharr.Provider.Radarr
         ///   Adds a movie to Radarr using the given IMDB ID.
         /// </summary>
         /// <inheritdoc cref="AddMovieAsync(RadarrMovieOptions)" />
-        public async Task<RadarrMovie?> AddMovieAsync(string imdbId)
+        public virtual async Task<RadarrMovie?> AddMovieAsync(string imdbId)
             => await this.AddMovieAsync(new RadarrMovieOptions(imdbId));
 
         /// <summary>
         ///   Gets a "filter score" for the given Radarr movie, given it's filter rules. The higher, the more preferred it is.
         /// </summary>
-        public int GetFilterScore(RadarrMovie movie)
+        public virtual int GetFilterScore(RadarrMovie movie)
         {
             int score = 0;
 

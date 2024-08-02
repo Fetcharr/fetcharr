@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Fetcharr.Testing.Assertions</RootNamespace>
+    <PackageId>Fetcharr.Testing.Assertions.Tests</PackageId>
+    <AssemblyName>Fetcharr.Testing.Assertions.Tests</AssemblyName>
+    <ProjectType>Test</ProjectType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="Fetcharr.Testing.Assertions.Extensions" />
+  </ItemGroup>
+
+</Project>

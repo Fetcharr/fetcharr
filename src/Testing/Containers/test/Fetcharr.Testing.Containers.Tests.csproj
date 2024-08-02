@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\Fetcharr.Testing.Containers.csproj" />
+    <ProjectReference Include="..\..\Assertions\src\Fetcharr.Testing.Assertions.csproj" />
     <ProjectReference Include="..\..\Layers\src\Fetcharr.Testing.Layers.csproj" />
   </ItemGroup>
 
