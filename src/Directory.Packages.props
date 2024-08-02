@@ -36,6 +36,7 @@
     <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
     <PackageVersion Include="Testcontainers" Version="3.9.0" />
     <PackageVersion Include="xunit" Version="2.5.3" />
+    <PackageVersion Include="xunit.categories" Version="2.0.8" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3" />
   </ItemGroup>
 

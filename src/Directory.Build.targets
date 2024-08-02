@@ -51,12 +51,14 @@
         <PackageReference Include="NSubstitute" />
         <PackageReference Include="NSubstitute.Analyzers.CSharp" />
         <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.categories" />
         <PackageReference Include="xunit.runner.visualstudio" />
 
         <!-- Test package references -->
         <Using Include="FluentAssertions"/>
         <Using Include="NSubstitute"/>
         <Using Include="Xunit"/>
+        <Using Include="Xunit.Categories"/>
       </ItemGroup>
     </When>
 
