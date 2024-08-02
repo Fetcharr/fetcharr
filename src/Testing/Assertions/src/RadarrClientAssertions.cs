@@ -19,7 +19,7 @@ namespace Fetcharr.Testing.Assertions
         [CustomAssertion]
         public async Task<AndConstraint<RadarrClientAssertions>> ContainMovieAsync(
             string movieTitle,
-            [StringSyntax("CompositeFormat")]  string because = "", params object[] becauseArgs)
+            [StringSyntax("CompositeFormat")] string because = "", params object[] becauseArgs)
         {
             bool success = Execute.Assertion
                 .BecauseOf(because, becauseArgs)
@@ -43,7 +43,7 @@ namespace Fetcharr.Testing.Assertions
         [CustomAssertion]
         public async Task<AndConstraint<RadarrClientAssertions>> NotContainMovieAsync(
             string movieTitle,
-            [StringSyntax("CompositeFormat")]  string because = "", params object[] becauseArgs)
+            [StringSyntax("CompositeFormat")] string because = "", params object[] becauseArgs)
         {
             bool success = Execute.Assertion
                 .BecauseOf(because, becauseArgs)

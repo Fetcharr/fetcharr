@@ -20,10 +20,7 @@ namespace Fetcharr.Cache.SQLite.Migrations
                     Value = table.Column<string>(type: "TEXT", nullable: true),
                     ExpiresAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Items", x => x.Key);
-                });
+                constraints: table => table.PrimaryKey("PK_Items", x => x.Key));
         }
 
         /// <inheritdoc />

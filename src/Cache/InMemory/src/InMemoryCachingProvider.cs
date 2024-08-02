@@ -59,25 +59,25 @@ namespace Fetcharr.Cache.InMemory
         }
 
         /// <inheritdoc />
-        public override async Task SetAsync<T>(string key, T value, TimeSpan? _expiration = null, CancellationToken cancellationToken = default)
+        public override async Task SetAsync<T>(string key, T value, TimeSpan? expiration = null, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNullOrEmpty(key, nameof(key));
 
-            TimeSpan expiration = _expiration ?? options.Value.DefaultExpiration;
+            TimeSpan _expiration = expiration ?? options.Value.DefaultExpiration;
 
             if(options.Value.MaxExpirationDilation > 0)
             {
                 TimeSpan dilationTime = TimeSpan.FromSeconds(Random.Shared.Next(options.Value.MaxExpirationDilation));
-                expiration += dilationTime;
+                _expiration += dilationTime;
             }
 
             if(this._database.TryGetValue(key, out InMemoryCacheItem? item))
             {
-                item.Update(value, expiration);
+                item.Update(value, _expiration);
             }
             else
             {
-                this._database[key] = new InMemoryCacheItem(value, expiration);
+                this._database[key] = new InMemoryCacheItem(value, _expiration);
 
                 if(options.Value.SizeLimit > 0 && Interlocked.Read(ref this.CacheSize) >= options.Value.SizeLimit)
                 {

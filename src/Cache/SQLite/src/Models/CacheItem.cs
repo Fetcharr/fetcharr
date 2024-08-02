@@ -29,6 +29,8 @@ namespace Fetcharr.Cache.SQLite.Models
 
         public async Task SetValueAsync<T>(T? value, CancellationToken cancellationToken = default)
         {
+            _ = cancellationToken;
+
             this.Value = value is not null ? JsonSerializer.Serialize(value) : null;
 
             await Task.CompletedTask;
@@ -36,6 +38,8 @@ namespace Fetcharr.Cache.SQLite.Models
 
         public async Task<T?> GetValueAsync<T>(CancellationToken cancellationToken = default)
         {
+            _ = cancellationToken;
+
             if(this.Value is null)
             {
                 return await Task.FromResult<T?>(default);
