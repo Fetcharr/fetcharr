@@ -7,6 +7,7 @@ partial class Build : NukeBuild
     readonly bool IncludeIntegrationTests = false;
 
     Target Test => _ => _
+        .Description("Runs test suites within the build tree")
         .DependsOn(Compile)
         .Executes(() =>
             DotNetTasks.DotNetTest(c => c

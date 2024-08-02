@@ -51,6 +51,6 @@ jobs:
 
       - name: Push development image
         if: ${{ github.ref == 'refs/heads/develop' }}
-        run: ./build.cmd BuildImage
+        run: ./build.cmd BuildImage --include-integration-tests --push-image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
