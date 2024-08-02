@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Fetcharr.Testing.Assertions.Tests
 {
-    [Trait("Category", "Assertions")]
+    [Category("Assertions")]
     public class RadarrClientAssertions
     {
         [Fact(DisplayName = "ContainMovieAsync should return true, given movie list with matching title.")]
