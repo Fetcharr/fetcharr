@@ -22,7 +22,7 @@ namespace Fetcharr.Testing.Layers
         /// <summary>
         ///   Gets an HTTP client for interacting with the Radarr instance.
         /// </summary>
-        public  FlurlClient RadarrApiClient =>
+        public FlurlClient RadarrApiClient =>
             new FlurlClient(this._container.EndpointBase)
                 .WithHeader("X-Api-Key", this._container.Configuration.ApiKey);
 
