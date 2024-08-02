@@ -5,11 +5,8 @@ using Octokit;
 
 partial class Build : NukeBuild
 {
-    [Parameter("Whether the release is a pre-release or not.")]
-    readonly bool PreRelease;
-
     Target Release => _ => _
-        .Description("Creates and pushes a new release to GitHub")
+        .Description("Creates and pushes a new release to GitHub.\n")
         .DependsOn(BuildImage)
         .Requires(() => this.GithubToken)
         .Executes(async () =>
@@ -20,10 +17,10 @@ partial class Build : NukeBuild
                 Credentials = new Credentials(this.GithubToken)
             };
 
-            NewRelease release = new(GitVersion.MajorMinorPatch)
+            NewRelease release = new(this.VersionTag)
             {
-                Name = GitVersion.MajorMinorPatch,
-                Prerelease = this.PreRelease,
+                Name = this.VersionTag,
+                Prerelease = !this.IsReleaseBuild,
                 Draft = false,
                 GenerateReleaseNotes = true,
                 MakeLatest = MakeLatestQualifier.True,
