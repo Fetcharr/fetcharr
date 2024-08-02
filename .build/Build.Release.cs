@@ -9,6 +9,7 @@ partial class Build : NukeBuild
     readonly bool PreRelease;
 
     Target Release => _ => _
+        .Description("Creates and pushes a new release to GitHub")
         .DependsOn(BuildImage)
         .Requires(() => this.GithubToken)
         .Executes(async () =>

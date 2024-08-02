@@ -8,6 +8,9 @@ using static Nuke.Common.Tools.Docker.DockerTasks;
 
 partial class Build : NukeBuild
 {
+    [Parameter("Whether to push the built Docker image to GHCR")]
+    readonly bool PushImage = false;
+
     private string DockerImage => $"ghcr.io/fetcharr/fetcharr";
 
     private string[] DockerVersionTags => GitVersion.BranchName.Equals("main", StringComparison.InvariantCultureIgnoreCase)
@@ -18,17 +21,30 @@ partial class Build : NukeBuild
 
     private string[] DockerImagePlatforms => ["linux/amd64", "linux/arm", "linux/arm64"];
 
+    Target AssertDockerPush => _ => _
+        .Unlisted()
+        .Description("Asserts whether the built Docker image can be pushed.")
+        .Before(Restore)
+        .Executes(() =>
+        {
+            if(this.PushImage && string.IsNullOrEmpty(this.GithubToken))
+            {
+                Assert.Fail("Cannot push Docker image, when GitHub token is not set.");
+            }
+        });
+
     Target BuildImage => _ => _
+        .Description("Builds the Docker image of Fetcharr, and optionally pushes it to GHCR.")
+        .DependsOn(AssertDockerPush)
         .DependsOn(Test)
         .DependsOn(Format)
-        .Requires(() => this.GithubToken)
         .Executes(() =>
             DockerBuildxBuild(x => x
                 .SetPath(".")
                 .SetFile("Dockerfile")
                 .SetTag(this.DockerImageTags)
                 .SetPlatform(string.Join(",", this.DockerImagePlatforms))
-                .SetPush(true)
+                .SetPush(this.PushImage && this.GithubToken is not null)
                 .AddCacheFrom("type=gha")
                 .AddCacheTo("type=gha,mode=max")
                 .AddLabel("org.opencontainers.image.source=https://github.com/fetcharr/fetcharr")
