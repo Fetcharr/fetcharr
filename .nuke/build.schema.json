@@ -47,6 +47,10 @@
             "VSCode"
           ]
         },
+        "IncludeIntegrationTests": {
+          "type": "boolean",
+          "description": "Whether to include integration tests (default: false)"
+        },
         "NoLogo": {
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
