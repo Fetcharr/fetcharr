@@ -6,7 +6,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 partial class Build : NukeBuild
 {
     Target Format => _ => _
-        .Description("Performs linting on the build tree")
+        .Description("Performs linting on the build tree.\n")
         .DependsOn(Restore)
         .Executes(() =>
             DotNetFormat(c => c

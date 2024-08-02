@@ -20,6 +20,7 @@
         },
         "GithubToken": {
           "type": "string",
+          "description": "GitHub Token for pushing Docker images to GHCR",
           "default": "Secrets must be entered via 'nuke :secrets [profile]'"
         },
         "Help": {
@@ -47,6 +48,13 @@
             "VSCode"
           ]
         },
+        "ImagePlatforms": {
+          "type": "array",
+          "description": "List of platforms to build the Docker image for",
+          "items": {
+            "type": "string"
+          }
+        },
         "IncludeIntegrationTests": {
           "type": "boolean",
           "description": "Whether to include integration tests (default: false)"
@@ -62,10 +70,6 @@
         "Plan": {
           "type": "boolean",
           "description": "Shows the execution plan (HTML)"
-        },
-        "PreRelease": {
-          "type": "boolean",
-          "description": "Whether the release is a pre-release or not"
         },
         "Profile": {
           "type": "array",
