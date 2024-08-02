@@ -6,7 +6,7 @@ EXPOSE 5000
 
 ARG TARGETARCH
 
-COPY --parents ./src/*.props ./src/**/*.csproj ./
+COPY --parents ./src/*.props ./src/*.targets ./src/**/*.csproj ./
 RUN dotnet restore src/API/src/Fetcharr.API.csproj -a $TARGETARCH
 
 COPY . .
