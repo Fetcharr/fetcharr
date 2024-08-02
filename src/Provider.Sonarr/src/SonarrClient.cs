@@ -46,6 +46,14 @@ namespace Fetcharr.Provider.Sonarr
         }
 
         /// <summary>
+        ///   Get all series from Sonarr.
+        /// </summary>
+        public virtual async Task<IEnumerable<SonarrSeries>> GetAllSeriesAsync() =>
+            await this._client
+                .Request("/api/v3/series")
+                .GetJsonAsync<IEnumerable<SonarrSeries>>();
+
+        /// <summary>
         ///   Get all root folders from Sonarr.
         /// </summary>
         public async Task<IEnumerable<SonarrRootFolder>> GetRootFoldersAsync() =>

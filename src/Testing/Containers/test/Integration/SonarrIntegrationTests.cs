@@ -5,17 +5,17 @@ using Flurl.Http;
 namespace Fetcharr.Testing.Containers.Tests.Integration
 {
     [IntegrationTest]
-    [Collection(nameof(RadarrIntegrationLayer))]
-    public class RadarrIntegrationTests(
-        RadarrIntegrationLayer layer)
+    [Collection(nameof(SonarrIntegrationLayer))]
+    public class SonarrIntegrationTests(
+        SonarrIntegrationLayer layer)
     {
         [Fact]
-        public async Task AssertRadarrInstanceHealthy()
+        public async Task AssertSonarrInstanceHealthy()
         {
             // Arrange
 
             // Act
-            IFlurlResponse response = await layer.RadarrApiClient.Request("/api/v3/health").GetAsync();
+            IFlurlResponse response = await layer.SonarrApiClient.Request("/api/v3/health").GetAsync();
 
             // Assert
             response.StatusCode.Should().Be(200);
