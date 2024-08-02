@@ -58,11 +58,8 @@ namespace Fetcharr.Testing.Containers.Radarr
                 .WithImage(RadarrImage)
                 .WithPortBinding(RadarrPort, assignRandomHostPort: true)
                 .WithApiKey(DefaultRadarrApiKey)
-                .WithWaitStrategy(Wait.ForUnixContainer().UntilHttpRequestIsSucceeded(request =>
-                    request
-                        .ForPath("/api/v3/health")
-                        .ForPort(RadarrPort)
-                        .WithHeader("X-Api-Key", this.DockerResourceConfiguration.ApiKey)));
+                .WithWaitStrategy(Wait.ForUnixContainer()
+                    .UntilMessageIsLogged("Now listening on"));
 
         /// <inheritdoc />
         protected override void Validate()
