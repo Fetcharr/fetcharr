@@ -10,6 +10,7 @@
         <IsPackable>true</IsPackable>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IsTestProject>false</IsTestProject>
 
         <NoWarn>CS1591;CS1573</NoWarn>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -36,6 +37,7 @@
       <PropertyGroup>
         <IsPackable>false</IsPackable>
         <IncludeSymbols>false</IncludeSymbols>
+        <IsTestProject>true</IsTestProject>
       </PropertyGroup>
 
       <ItemGroup>
@@ -43,14 +45,17 @@
         <ProjectReference Include="../src/$(RootNamespace).csproj" />
 
         <!-- Test package references -->
+        <PackageReference Include="coverlet.collector" />
         <PackageReference Include="FluentAssertions" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
-        <PackageReference Include="Moq" />
+        <PackageReference Include="NSubstitute" />
         <PackageReference Include="xunit" />
-        <PackageReference Include="xunit.runner.visualstudio">
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-          <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
+        <PackageReference Include="xunit.runner.visualstudio" />
+
+        <!-- Test package references -->
+        <Using Include="FluentAssertions"/>
+        <Using Include="NSubstitute"/>
+        <Using Include="Xunit"/>
       </ItemGroup>
     </When>
 
@@ -62,6 +67,7 @@
       <PropertyGroup>
         <IsPackable>false</IsPackable>
         <IncludeSymbols>false</IncludeSymbols>
+        <IsTestProject>false</IsTestProject>
       </PropertyGroup>
 
       <ItemGroup>
