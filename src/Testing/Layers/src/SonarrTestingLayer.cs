@@ -3,7 +3,7 @@ using Fetcharr.Provider.Sonarr;
 
 using Microsoft.Extensions.Logging;
 
-using Moq;
+using NSubstitute;
 
 namespace Fetcharr.Testing.Layers
 {
@@ -29,7 +29,7 @@ namespace Fetcharr.Testing.Layers
             IEnumerable<SonarrClient> clients = (configurations ?? [])
                 .Select(v => this.CreateClient(v));
 
-            return new SonarrClientCollection(clients, new Mock<ILogger<SonarrClientCollection>>().Object);
+            return new SonarrClientCollection(clients, Substitute.For<ILogger<SonarrClientCollection>>());
         }
     }
 }

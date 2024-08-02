@@ -3,7 +3,7 @@ using Fetcharr.Provider.Radarr;
 
 using Microsoft.Extensions.Logging;
 
-using Moq;
+using NSubstitute;
 
 namespace Fetcharr.Testing.Layers
 {
@@ -29,7 +29,7 @@ namespace Fetcharr.Testing.Layers
             IEnumerable<RadarrClient> clients = (configurations ?? [])
                 .Select(v => this.CreateClient(v));
 
-            return new RadarrClientCollection(clients, new Mock<ILogger<RadarrClientCollection>>().Object);
+            return new RadarrClientCollection(clients, Substitute.For<ILogger<RadarrClientCollection>>());
         }
     }
 }
