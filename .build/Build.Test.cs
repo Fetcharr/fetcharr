@@ -1,20 +1,17 @@
 using Nuke.Common;
-using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 
 partial class Build : NukeBuild
 {
-    IEnumerable<Project> TestProjects => SolutionModelTasks
-        .ReadSolution(SolutionFilePath)
-        .GetAllProjects("*.Tests");
+    [Parameter("Whether to include integration tests (default: false).")]
+    readonly bool IncludeIntegrationTests = false;
 
     Target Test => _ => _
         .DependsOn(Compile)
         .Executes(() =>
             DotNetTasks.DotNetTest(c => c
+                .SetProjectFile(SolutionFilePath)
                 .SetNoRestore(true)
-                .SetConfiguration(Configuration.Debug)
-                .CombineWith(TestProjects, (_, project) => _
-                    .SetProjectFile(project))));
+                .SetFilter(this.IncludeIntegrationTests ? "Test" : "Category!=IntegrationTest")
+                .SetConfiguration(Configuration.Debug)));
 }
