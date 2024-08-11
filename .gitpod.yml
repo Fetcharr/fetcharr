@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://gitpod.io/schemas/gitpod-schema.json
+
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Run dev (docs)
+    before: cd docs
+    init: npm ci
+    command: npm run start
+
+  - name: Build Release (docs)
+    before: cd docs
+    init: npm ci
+    command: npm run build
+
+  - name: Build (frontend)
+    init: dotnet build src/Fetcharr.sln
+
+  - name: Run (frontend)
+    command: dotnet run --project src/Web/src/Fetcharr.Web.csproj
+
+  - name: Watch (frontend)
+    command: dotnet watch --project src/Web/src/Fetcharr.Web.csproj
+
+ports:
+  - name: Frontend / API
+    port: 5656
+    protocol: http
+    onOpen: notify
+
+  - name: Documentation
+    port: 3000
+    protocol: http
+    onOpen: notify
+
+vscode:
+  extensions:
+    - EditorConfig.editorconfig
+    - ms-dotnettools.csdevkit
+    - ms-dotnettools.vscodeintellicode-csharp
+    - redhat.vscode-yaml
