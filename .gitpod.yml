@@ -36,7 +36,7 @@ ports:
 
 vscode:
   extensions:
-    - EditorConfig.editorconfig
-    - ms-dotnettools.csdevkit
-    - ms-dotnettools.vscodeintellicode-csharp
+    - muhammad-sammy.csharp
+    - editorconfig.editorconfig
+    - bradlc.vscode-tailwindcss
     - redhat.vscode-yaml
