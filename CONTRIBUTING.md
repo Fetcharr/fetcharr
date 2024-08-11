@@ -41,7 +41,7 @@ It is also recommended to add new tests, if you're implementing a new feature.
 
 There are a few ways of setting up the project for development:
 - [Installing all tools locally](#required-tools)
-- [or by using Github Codespaces](#single-click-setup)
+- [or by using single-click setups](#single-click-setup)
 
 ### Developing locally
 
@@ -96,9 +96,16 @@ dotnet run --project src/API/src/Fetcharr.API.csproj
 
 ### Single-click setup
 
-If you prefer not installing anything locally, you can open the project in Github Codespaces by clicking the button below:
+If you prefer not installing anything locally, you can open the project in [Github Codespaces](https://github.com/features/codespaces) or [Gitpod](https://gitpod.io) by clicking the buttons below:
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Fetcharr/fetcharr/tree/develop?quickstart=1)
+<div style="display: flex; align-items: center" align="center">
+  <a href="https://gitpod.io/#https://github.com/fetcharr/fetcharr/tree/develop">
+    <img src="https://gitpod.io/button/open-in-gitpod.svg" />
+  </a>
+  <a href="https://codespaces.new/Fetcharr/fetcharr/tree/develop?quickstart=1">
+    <img src="https://github.com/codespaces/badge.svg" />
+  </a>
+</div>
 
 ## Code Guidelines
 
