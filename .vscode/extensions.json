@@ -3,6 +3,8 @@
       "EditorConfig.editorconfig",
       "ms-dotnettools.csdevkit",
       "ms-dotnettools.vscodeintellicode-csharp",
-      "redhat.vscode-yaml"
+      "redhat.vscode-yaml",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss"
     ]
   }
