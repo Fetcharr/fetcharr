@@ -1,3 +1,5 @@
+using Fetcharr.Provider.Plex.Clients;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Fetcharr.Provider.Plex.Extensions
@@ -12,6 +14,9 @@ namespace Fetcharr.Provider.Plex.Extensions
             services.AddSingleton<PlexClient>();
             services.AddSingleton<PlexMetadataClient>();
             services.AddSingleton<PlexWatchlistClient>();
+            services.AddSingleton<PlexFriendsWatchlistClient>();
+
+            services.AddSingleton<PlexGraphQLClient>();
 
             return services;
         }
