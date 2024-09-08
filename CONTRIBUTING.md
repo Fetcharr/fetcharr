@@ -16,7 +16,7 @@ You can read our [Code of Conduct here](./CODE_OF_CONDUCT.md).
 
 **Doing your first pull request?** Great, awesome to have you on-board! If you're unsure how to start, you can learn how from this *free* series: [How to Contribute to an Open Source Project on GitHub.](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-- To avoid wasted development time, **please discuss** the change you wanna make. This can be done with on [GitLab Issues](https://git.maxtrier.dk/natamo/paracord/-/issues) or [GitHub Issues](https://github.com/maxnatamo/paracord/issues). If possible, discuss it publicly, so other people can chime in.
+- To avoid wasted development time, **please discuss** the change you wanna make. This can be done with on [GitHub Issues](https://github.com/Fetcharr/fetcharr/issues). If possible, discuss it publicly, so other people can chime in.
 - The `develop` branch is used for the current development build. For that reason, **please, do not submit your PRs against the `main` branch.**
 - Ensure that your code **respects the repository's formatting standard** (defined [here](/.editorconfig)). To do this, you can run:
 ```bash
