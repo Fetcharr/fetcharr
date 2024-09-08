@@ -33,7 +33,7 @@ namespace Fetcharr.Provider.Plex
         /// </summary>
         /// <param name="offset">Offset into the watchlist to fetch from.</param>
         /// <param name="limit">Maximum amount of items to retrieve from the watchlist.</param>
-        public async Task<MediaResponse<WatchlistMetadataItem>> FetchWatchlistAsync(int offset = 0, int limit = 20)
+        public async Task<IEnumerable<WatchlistMetadataItem>> FetchWatchlistAsync(int offset = 0, int limit = 20)
         {
             IFlurlResponse response = await this._client
                 .Request("all")
@@ -45,18 +45,21 @@ namespace Fetcharr.Provider.Plex
 
             if(response.StatusCode == (int) HttpStatusCode.NotModified)
             {
-                CacheValue<MediaResponse<WatchlistMetadataItem>> cacheValue =
-                    await cachingProvider.GetAsync<MediaResponse<WatchlistMetadataItem>>("watchlist");
+                CacheValue<IEnumerable<WatchlistMetadataItem>> cacheValue =
+                    await cachingProvider.GetAsync<IEnumerable<WatchlistMetadataItem>>("watchlist");
 
                 return cacheValue.Value;
             }
 
-            MediaResponse<WatchlistMetadataItem> watchlist = await response.GetJsonAsync<MediaResponse<WatchlistMetadataItem>>();
+            MediaResponse<WatchlistMetadataItem> watchlistContainer = await response
+                .GetJsonAsync<MediaResponse<WatchlistMetadataItem>>();
+
             if(response.Headers.TryGetFirst("etag", out string? etag))
             {
                 this.lastEtag = etag;
             }
 
+            IEnumerable<WatchlistMetadataItem> watchlist = watchlistContainer.MediaContainer.Metadata;
             await cachingProvider.SetAsync("watchlist", watchlist, expiration: TimeSpan.FromHours(1));
 
             return watchlist;

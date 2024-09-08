@@ -14,4 +14,9 @@
     <ProjectReference Include="..\..\Models\src\Fetcharr.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="GraphQL.Client" />
+    <PackageReference Include="GraphQL.Client.Serializer.SystemTextJson" />
+  </ItemGroup>
+
 </Project>

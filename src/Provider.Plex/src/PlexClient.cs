@@ -14,7 +14,8 @@ namespace Fetcharr.Provider.Plex
     public class PlexClient(
         IOptions<FetcharrConfiguration> configuration,
         PlexMetadataClient metadataClient,
-        PlexWatchlistClient watchlistClient)
+        PlexWatchlistClient watchlistClient,
+        PlexFriendsWatchlistClient plexFriendsWatchlistClient)
         : ExternalProvider
     {
         private readonly FlurlClient _client =
@@ -34,6 +35,11 @@ namespace Fetcharr.Provider.Plex
         ///   Gets the underlying client for interacting with Plex watchlists.
         /// </summary>
         public readonly PlexWatchlistClient Watchlist = watchlistClient;
+
+        /// <summary>
+        ///   Gets the underlying client for interacting with Plex watchlists for friends.
+        /// </summary>
+        public readonly PlexFriendsWatchlistClient FriendsWatchlistClient = plexFriendsWatchlistClient;
 
         /// <inheritdoc />
         public override async Task<bool> PingAsync(CancellationToken cancellationToken)

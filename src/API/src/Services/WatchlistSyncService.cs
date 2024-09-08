@@ -1,6 +1,9 @@
 using Fetcharr.API.Pipeline;
+using Fetcharr.Models.Configuration;
 using Fetcharr.Provider.Plex;
 using Fetcharr.Provider.Plex.Models;
+
+using Microsoft.Extensions.Options;
 
 namespace Fetcharr.API.Services
 {
@@ -12,6 +15,7 @@ namespace Fetcharr.API.Services
         PlexClient plexClient,
         SonarrSeriesQueue sonarrSeriesQueue,
         RadarrMovieQueue radarrMovieQueue,
+        IOptions<FetcharrConfiguration> configuration,
         ILogger<WatchlistSyncService> logger)
         : BasePeriodicService(TimeSpan.FromSeconds(30), logger)
     {
@@ -19,9 +23,9 @@ namespace Fetcharr.API.Services
         {
             logger.LogInformation("Syncing Plex watchlist...");
 
-            MediaResponse<WatchlistMetadataItem> items = await plexClient.Watchlist.FetchWatchlistAsync(limit: 5);
+            IEnumerable<WatchlistMetadataItem> watchlistItems = await this.GetAllWatchlistsAsync();
 
-            foreach(WatchlistMetadataItem item in items.MediaContainer.Metadata)
+            foreach(WatchlistMetadataItem item in watchlistItems)
             {
                 PlexMetadataItem? metadata = await plexClient.Metadata.GetMetadataFromRatingKeyAsync(item.RatingKey);
                 if(metadata is null)
@@ -45,6 +49,22 @@ namespace Fetcharr.API.Services
 
                 await queue.EnqueueAsync(metadata, cancellationToken);
             }
+        }
+
+        private async Task<IEnumerable<WatchlistMetadataItem>> GetAllWatchlistsAsync()
+        {
+            List<WatchlistMetadataItem> watchlistItems = [];
+
+            // Add own watchlist
+            watchlistItems.AddRange(await plexClient.Watchlist.FetchWatchlistAsync(limit: 5));
+
+            // Add friends' watchlists, if enabled.
+            if(configuration.Value.Plex.IncludeFriendsWatchlist)
+            {
+                watchlistItems.AddRange(await plexClient.FriendsWatchlistClient.FetchAllWatchlistsAsync());
+            }
+
+            return watchlistItems;
         }
     }
 }
