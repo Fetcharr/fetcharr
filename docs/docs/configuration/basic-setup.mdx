@@ -39,6 +39,7 @@ Plex tokens are not permanent and will expire after some time. Continuously upda
 ```yaml
 plex:
   api_token: PLEX_TOKEN
+  sync_friends_watchlist: false
 ```
 
 To setup your Plex account in Fetcharr, you need to get your Plex token. While we could outline the steps for getting yours here, it would be better to refer til Plex' official documentation.
@@ -50,6 +51,13 @@ You can read their page on [getting your Plex token here](https://support.plex.t
 **You should not share your Plex token with anyone.** It will allow anyone to impersonate you on Plex.
 
 :::
+
+### `sync_friends_watchlist`
+**Optional.** Default: `false`
+
+Defines whether Fetcharr should also sync the watchlist of friends on Plex. This is useful when you have multiple users, who all have separate accounts instead of managed users, but you still want to fetch their watchlist.
+
+For this to work, your friends may need to set their watchlist visibility in Plex to be either `Friends Only` or `Friends of Friends`. [You can find the setting here](https://app.plex.tv/desktop/#!/settings/account) under `Setting > Account Visibility & Account Sharing > My Watchlist`.
 
 ## Service
 
@@ -116,7 +124,7 @@ Whether the instance should be enabled. This can be useful for playing around wi
 
 Which filters to apply to the instance. They can help limit what content will be sent to the instance, such as limiting an instance to be anime-only, kids-only, etc.
 
-For more information about filters, click here.
+For more information about filters, [click here](./filters.mdx).
 
 ### `root_folder`
 **Optional.** Default: `null`
