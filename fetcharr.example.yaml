@@ -9,6 +9,10 @@ plex:
   ## If you need help finding yours, see here: https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/
   api_token: PLEX_TOKEN
 
+  ## Whether to include friends' watchlists when syncing.
+  ## Default: false
+  sync_friends_watchlist: false
+
 ## List of all Sonarr instances available
 sonarr:
   default:

@@ -169,6 +169,11 @@
         "api_token": {
           "type": "string",
           "description": "API token for authenticating with Plex.\nSee more here: https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/"
+        },
+        "sync_friends_watchlist": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include friends' watchlists when syncing."
         }
       }
     },
