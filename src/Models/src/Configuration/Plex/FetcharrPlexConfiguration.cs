@@ -15,5 +15,12 @@ namespace Fetcharr.Models.Configuration.Plex
         [Required]
         [YamlMember(Alias = "api_token")]
         public string ApiToken { get; set; } = string.Empty;
+
+        /// <summary>
+        ///   Gets or sets whether to include friends' watchlists in the sync.
+        /// </summary>
+        [Required]
+        [YamlMember(Alias = "sync_friends_watchlist")]
+        public bool IncludeFriendsWatchlist { get; set; } = false;
     }
 }
