@@ -48,7 +48,10 @@ namespace Fetcharr.Provider.Plex
                 CacheValue<IEnumerable<WatchlistMetadataItem>> cacheValue =
                     await cachingProvider.GetAsync<IEnumerable<WatchlistMetadataItem>>("watchlist");
 
-                return cacheValue.Value;
+                if(cacheValue.HasValue)
+                {
+                    return cacheValue.Value;
+                }
             }
 
             MediaResponse<WatchlistMetadataItem> watchlistContainer = await response
