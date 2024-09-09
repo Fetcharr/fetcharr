@@ -34,7 +34,7 @@ namespace Fetcharr.API.Services
                     continue;
                 }
 
-                logger.LogInformation("Sending series '{Title} ({Year})' to Sonarr...", item.Title, item.Year);
+                logger.LogDebug("Sending series '{Title} ({Year})' to Sonarr...", item.Title, item.Year);
 
                 SonarrSeries? series = await sonarrClientCollection.GetSeriesByTvdbAsync(item.TvdbId);
                 if(series is null)
