@@ -34,7 +34,7 @@ namespace Fetcharr.API.Services
                     continue;
                 }
 
-                logger.LogInformation("Sending movie '{Title} ({Year})' to Radarr...", item.Title, item.Year);
+                logger.LogDebug("Sending movie '{Title} ({Year})' to Radarr...", item.Title, item.Year);
 
                 RadarrMovie? movie = await radarrClientCollection.GetMovieByTmdbAsync(item.TmdbId);
                 if(movie is null)

@@ -146,7 +146,7 @@ namespace Fetcharr.Provider.Sonarr
                     .Request($"/api/v3/series/{series.Id}")
                     .PutJsonAsync(requestBody);
 
-                logger.LogInformation(
+                logger.LogDebug(
                     "Updated '{Title} ({Year})' in Sonarr instance '{Instance}'.",
                     series.Title,
                     series.Year,
@@ -159,7 +159,7 @@ namespace Fetcharr.Provider.Sonarr
                 .Request("/api/v3/series")
                 .PostJsonAsync(requestBody);
 
-            logger.LogInformation(
+            logger.LogDebug(
                 "Added '{Title} ({Year})' to Sonarr instance '{Instance}'.",
                 series.Title,
                 series.Year,

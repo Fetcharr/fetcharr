@@ -185,7 +185,7 @@ namespace Fetcharr.Provider.Radarr
                     .Request($"/api/v3/movie/{movie.Id}")
                     .PutJsonAsync(requestBody);
 
-                logger.LogInformation(
+                logger.LogDebug(
                     "Updated '{Title} ({Year})' in Radarr instance '{Instance}'.",
                     movie.Title,
                     movie.Year,
@@ -198,7 +198,7 @@ namespace Fetcharr.Provider.Radarr
                 .Request("/api/v3/movie")
                 .PostJsonAsync(requestBody);
 
-            logger.LogInformation(
+            logger.LogDebug(
                 "Added '{Title} ({Year})' to Radarr instance '{Instance}'.",
                 movie.Title,
                 movie.Year,

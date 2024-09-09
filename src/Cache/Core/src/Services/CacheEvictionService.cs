@@ -42,7 +42,7 @@ namespace Fetcharr.Cache.Core.Services
                 return;
             }
 
-            logger.LogInformation("Evicting expired cache entries...");
+            logger.LogDebug("Evicting expired cache entries...");
 
             foreach(ICachingProvider provider in services.GetServices<ICachingProvider>())
             {
