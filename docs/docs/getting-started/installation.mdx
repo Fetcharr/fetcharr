@@ -12,7 +12,7 @@ Lists all the available options for installing/building Fetcharr. Some of these 
 
 :::warning
 
-**Fetcharr is still early in development.** If you would like to help test the bleeding edge, please use the image `fetcharr/fetcharr:develop`!
+**Fetcharr is still early in development.** If you would like to help test the bleeding edge, please use the image `ghcr.io/fetcharr/fetcharr:develop`!
 
 :::
 
@@ -34,7 +34,7 @@ Be sure to replace `/path/to/appdata/config` with a valid host directory path. I
         -e TZ=Europe/Copenhagen \
         -v /path/to/appdata/config:/config \
         --restart unless-stopped \
-        fetcharr/fetcharr:latest
+        ghcr.io/fetcharr/fetcharr:latest
     ```
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -43,7 +43,7 @@ Be sure to replace `/path/to/appdata/config` with a valid host directory path. I
     ```yaml title="compose.yaml"
     services:
         fetcharr:
-            image: fetcharr/fetcharr:latest
+            image: ghcr.io/fetcharr/fetcharr:latest
             container_name: fetcharr
             environment:
             - TZ=Europe/Copenhagen
