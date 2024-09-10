@@ -43,7 +43,8 @@ namespace Fetcharr.API
 
             builder.Services.AddCaching(opts => opts
                 .UseHybrid("metadata", opts => opts.SQLite.DatabasePath = "metadata.sqlite")
-                .UseInMemory("watchlist"));
+                .UseInMemory("watchlist")
+                .UseInMemory("plex-graphql"));
 
             builder.Services.AddFetcharr();
             builder.Services.AddControllers();
