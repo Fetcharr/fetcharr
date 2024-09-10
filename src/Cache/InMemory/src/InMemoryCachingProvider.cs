@@ -79,6 +79,8 @@ namespace Fetcharr.Cache.InMemory
             {
                 this._database[key] = new InMemoryCacheItem(value, _expiration);
 
+                Interlocked.Increment(ref this.CacheSize);
+
                 if(options.Value.SizeLimit > 0 && Interlocked.Read(ref this.CacheSize) >= options.Value.SizeLimit)
                 {
                     int itemsToRemove = (int) (Interlocked.Read(ref this.CacheSize) - options.Value.SizeLimit);
