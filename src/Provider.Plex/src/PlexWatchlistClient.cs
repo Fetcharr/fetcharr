@@ -7,6 +7,7 @@ using Fetcharr.Provider.Plex.Models;
 using Flurl.Http;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Fetcharr.Provider.Plex
@@ -16,12 +17,14 @@ namespace Fetcharr.Provider.Plex
     /// </summary>
     public class PlexWatchlistClient(
         IOptions<FetcharrConfiguration> configuration,
-        [FromKeyedServices("watchlist")] ICachingProvider cachingProvider)
+        [FromKeyedServices("watchlist")] ICachingProvider cachingProvider,
+        ILogger<PlexWatchlistClient> logger)
     {
         private readonly FlurlClient _client =
             new FlurlClient("https://metadata.provider.plex.tv/library/sections/watchlist/")
                 .WithHeader("X-Plex-Token", configuration.Value.Plex.ApiToken)
-                .WithHeader("X-Plex-Client-Identifier", "fetcharr");
+                .WithHeader("X-Plex-Client-Identifier", "fetcharr")
+                .AllowHttpStatus((int) HttpStatusCode.NotModified);
 
         /// <summary>
         ///   If not <see langword="null" />, contains the E-Tag value of the last watchlist request.
@@ -48,10 +51,17 @@ namespace Fetcharr.Provider.Plex
                 CacheValue<IEnumerable<WatchlistMetadataItem>> cacheValue =
                     await cachingProvider.GetAsync<IEnumerable<WatchlistMetadataItem>>("watchlist");
 
-                if(cacheValue.HasValue)
+                // If Plex returned NotModified, but the cache is empty, it must've been evicted
+                // which means we have to resend the request without E-Tag caching.
+                if(!cacheValue.HasValue)
                 {
-                    return cacheValue.Value;
+                    logger.LogInformation("Watchlist cache has been evicted; re-sending request...");
+
+                    this.lastEtag = null;
+                    return await this.FetchWatchlistAsync(offset, limit);
                 }
+
+                return cacheValue.Value;
             }
 
             MediaResponse<WatchlistMetadataItem> watchlistContainer = await response
