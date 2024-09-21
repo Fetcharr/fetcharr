@@ -154,6 +154,11 @@ Whether to force the instance to search for newly added content, right after it'
 Whether to allow in-production content, such as content which has only been announced.
 When content is in production, genres and certifications have often not been finalized, which will render instance filters useless.
 
+### `update_existing`
+**Optional.** Default: `true`
+
+Whether existing items in the service should be updated or left as-is. By default, if an item from a watchlist already exists on the service, it will be updated. This can become annoying if you frequently update monitoring, profile or other settings for an item in the service UI, as Fetcharr will override it on next sync. To opt out of this behaviour, set this value to `false`.
+
 ## Sonarr
 
 This section will only cover instance options that are unique to Sonarr. All the configuration options in [Services](#service) are still allowed.
