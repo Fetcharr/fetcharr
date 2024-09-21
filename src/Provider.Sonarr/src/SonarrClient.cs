@@ -155,17 +155,22 @@ namespace Fetcharr.Provider.Sonarr
                 return await newSeriesResponse.GetJsonAsync<SonarrSeries>();
             }
 
-            IFlurlResponse createdSeriesResponse = await this._client
-                .Request("/api/v3/series")
-                .PostJsonAsync(requestBody);
+            if(series.Id is null)
+            {
+                IFlurlResponse createdSeriesResponse = await this._client
+                    .Request("/api/v3/series")
+                    .PostJsonAsync(requestBody);
 
-            logger.LogDebug(
-                "Added '{Title} ({Year})' to Sonarr instance '{Instance}'.",
-                series.Title,
-                series.Year,
-                this.Name);
+                logger.LogDebug(
+                    "Added '{Title} ({Year})' to Sonarr instance '{Instance}'.",
+                    series.Title,
+                    series.Year,
+                    this.Name);
 
-            return await createdSeriesResponse.GetJsonAsync<SonarrSeries>();
+                return await createdSeriesResponse.GetJsonAsync<SonarrSeries>();
+            }
+
+            return null;
         }
 
         /// <summary>
