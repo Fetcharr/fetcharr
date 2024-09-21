@@ -2,7 +2,7 @@
 
 name: ✨ Feature Request
 description: Suggest a feature
-labels: ['type:enhancement']
+labels: ['enhancement']
 body:
   - type: checkboxes
     id: terms
@@ -36,7 +36,7 @@ body:
       description: If you have any additional information or media which is relevant, please provide it here.
 
   - type: checkboxes
-    id: terms
+    id: accept-code-of-conduct
     attributes:
       label: Code of Conduct
       description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/fetcharr/fetcharr/blob/develop/CODE_OF_CONDUCT.md)
