@@ -179,7 +179,7 @@ namespace Fetcharr.Provider.Radarr
             };
 
             // If the movie already exists, just update it.
-            if(movie.Id is not null)
+            if(movie.Id is not null && configuration.UpdateExisting)
             {
                 IFlurlResponse newMovieResponse = await this._client
                     .Request($"/api/v3/movie/{movie.Id}")
