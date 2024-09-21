@@ -140,7 +140,7 @@ namespace Fetcharr.Provider.Sonarr
             };
 
             // If the series already exists, just update it.
-            if(series.Id is not null)
+            if(series.Id is not null && configuration.UpdateExisting)
             {
                 IFlurlResponse newSeriesResponse = await this._client
                     .Request($"/api/v3/series/{series.Id}")
