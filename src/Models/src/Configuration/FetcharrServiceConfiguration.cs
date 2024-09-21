@@ -71,5 +71,11 @@ namespace Fetcharr.Models.Configuration
         /// </summary>
         [YamlMember(Alias = "allow_in_production")]
         public bool AllowInProduction { get; set; } = false;
+
+        /// <summary>
+        ///   Gets or sets whether existing items in the service should be updated or left as-is.
+        /// </summary>
+        [YamlMember(Alias = "update_existing")]
+        public bool UpdateExisting { get; set; } = true;
     }
 }
