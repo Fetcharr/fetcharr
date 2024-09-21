@@ -194,17 +194,22 @@ namespace Fetcharr.Provider.Radarr
                 return await newMovieResponse.GetJsonAsync<RadarrMovie>();
             }
 
-            IFlurlResponse createdMovieResponse = await this._client
-                .Request("/api/v3/movie")
-                .PostJsonAsync(requestBody);
+            if(movie.Id is null)
+            {
+                IFlurlResponse createdMovieResponse = await this._client
+                    .Request("/api/v3/movie")
+                    .PostJsonAsync(requestBody);
 
-            logger.LogDebug(
-                "Added '{Title} ({Year})' to Radarr instance '{Instance}'.",
-                movie.Title,
-                movie.Year,
-                this.Name);
+                logger.LogDebug(
+                    "Added '{Title} ({Year})' to Radarr instance '{Instance}'.",
+                    movie.Title,
+                    movie.Year,
+                    this.Name);
 
-            return await createdMovieResponse.GetJsonAsync<RadarrMovie>();
+                return await createdMovieResponse.GetJsonAsync<RadarrMovie>();
+            }
+
+            return null;
         }
 
         /// <summary>
