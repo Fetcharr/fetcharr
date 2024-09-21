@@ -57,6 +57,11 @@ sonarr:
     ## Default: false
     # allow_in_production: true
 
+    ## Whether to update existing items in Sonarr or leave them as-is.
+    ## This can help prevent unwanted overwriting to series monitoring, quality profile, etc., which have been altered in Sonarr.
+    ## Default: true
+    # update_existing: false
+
     ## Sets the series type on newly-added items.
     ## Available values: [Standard, Daily, Anime]
     ## Default: Standard
@@ -136,6 +141,11 @@ radarr:
     ## When in-production, genres and certifications are still not finalized; meaning filters likely won't work.
     ## Default: false
     # allow_in_production: true
+
+    ## Whether to update existing items in Radarr or leave them as-is.
+    ## This can help prevent unwanted overwriting to movies monitoring, quality profile, etc., which have been altered in Radarr.
+    ## Default: true
+    # update_existing: false
 
     ## Sets the minimum availability before the instance should attempt fetching the movie.
     ## Available values: [TBA, Announced, InCinemas, Released]

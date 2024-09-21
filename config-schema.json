@@ -33,7 +33,11 @@
       "description": "Include a separate configuration file into the current one.",
       "additionalProperties": false,
       "anyOf": [
-        {"required": [ "config" ]}
+        {
+          "required": [
+            "config"
+          ]
+        }
       ],
       "properties": {
         "config": {
@@ -68,11 +72,17 @@
       "$ref": "#/$defs/service_filter_collection"
     },
     "root_folder": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "description": "Defines the path of the root folder to store items in. If not set, uses the first root folder from the instance."
     },
     "quality_profile": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "description": "Defines the name of the quality profile to add items as. If not set, uses the first quality profile from the instance."
     },
     "monitored": {
@@ -89,6 +99,11 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to allow in-production series to be added to the instance.\nWhen in-production, genres and certifications are still not finalized; meaning filters likely won't work."
+    },
+    "update_existing": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether existing items in the service should be updated or left as-is."
     },
     "service_filter": {
       "type": "array",
@@ -133,19 +148,18 @@
       },
       "examples": [
         /* TV Parental Guidelines (US) */
-        "TV-Y",   // All children, including ages from 2-6
-        "TV-Y7",  // Directed at children age 7 and above.
-        "TV-G",   // General audience
-        "TV-PG",  // Parental guidance suggested
-        "TV-14",  // Parents strongly cautioned; may be unsuitable for children under the age of 14
-        "TV-MA",  // Mature audience only
-
+        "TV-Y", // All children, including ages from 2-6
+        "TV-Y7", // Directed at children age 7 and above.
+        "TV-G", // General audience
+        "TV-PG", // Parental guidance suggested
+        "TV-14", // Parents strongly cautioned; may be unsuitable for children under the age of 14
+        "TV-MA", // Mature audience only
         /* MPA film rating systems (US) */
-        "G",      // General audience; all ages admitted.
-        "PG",     // Parental guidance suggested; some material may not be suitable for children.
-        "PG-13",  // Parents strongly cautioned; some material may be inappropriate for children under 13.
-        "R",      // Restricted; under 17 requires accompanying parent or adult guardian.
-        "NC-17"   // Adults only; no one 17 and under admitted.
+        "G", // General audience; all ages admitted.
+        "PG", // Parental guidance suggested; some material may not be suitable for children.
+        "PG-13", // Parents strongly cautioned; some material may be inappropriate for children under 13.
+        "R", // Restricted; under 17 requires accompanying parent or adult guardian.
+        "NC-17" // Adults only; no one 17 and under admitted.
       ]
     },
     "service_filter_collection": {
@@ -164,7 +178,9 @@
     "plex": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["api_token"],
+      "required": [
+        "api_token"
+      ],
       "properties": {
         "api_token": {
           "type": "string",
@@ -212,7 +228,11 @@
           "$ref": "#/$defs/allow_in_production"
         },
         "series_type": {
-          "enum": ["Standard", "Daily", "Anime"],
+          "enum": [
+            "Standard",
+            "Daily",
+            "Anime"
+          ],
           "description": "Defines what type to assign to newly-added series."
         },
         "season_folder": {
@@ -226,14 +246,21 @@
           "description": "Defines whether to monitor new items, as they are released."
         },
         "monitored_items": {
-          "enum": ["None", "All", "FirstSeason", "OnlyShortSeries"],
+          "enum": [
+            "None",
+            "All",
+            "FirstSeason",
+            "OnlyShortSeries"
+          ],
           "default": "FirstSeason",
           "description": "Defines which seasons should be monitored for newly-added series."
         }
       },
       "if": {
         "properties": {
-          "monitored_items": { "const": "OnlyShortSeries" }
+          "monitored_items": {
+            "const": "OnlyShortSeries"
+          }
         }
       },
       "then": {
@@ -281,12 +308,21 @@
           "$ref": "#/$defs/allow_in_production"
         },
         "minimum_availability": {
-          "enum": ["TBA", "Announced", "InCinemas", "Released"],
+          "enum": [
+            "TBA",
+            "Announced",
+            "InCinemas",
+            "Released"
+          ],
           "default": "Released",
           "description": "Sets the minimum availability before the instance should attempt fetching the movie."
         },
         "monitored_items": {
-          "enum": ["None", "MovieOnly", "MovieAndCollection"],
+          "enum": [
+            "None",
+            "MovieOnly",
+            "MovieAndCollection"
+          ],
           "default": "MovieOnly",
           "description": "Defines which items should be monitored for newly-added movies."
         }
