@@ -1,7 +1,9 @@
+using Cachedeer;
+using Cachedeer.InMemory;
+using Cachedeer.Sqlite;
+using Cachedeer.Tiered;
+
 using Fetcharr.API.Extensions;
-using Fetcharr.Cache.Core.Extensions;
-using Fetcharr.Cache.Hybrid.Extensions;
-using Fetcharr.Cache.InMemory.Extensions;
 using Fetcharr.Models.Configuration;
 
 using Serilog;
@@ -28,7 +30,7 @@ namespace Fetcharr.API
                 {
                     configuration.MinimumLevel.Information();
                     configuration.MinimumLevel.Override("Fetcharr", LogEventLevel.Verbose);
-                    configuration.MinimumLevel.Override("Fetcharr.Cache", LogEventLevel.Information);
+                    configuration.MinimumLevel.Override("Cachedeer", LogEventLevel.Information);
                 }
 
                 configuration.WriteTo.Console();
@@ -41,10 +43,20 @@ namespace Fetcharr.API
                 }
             });
 
-            builder.Services.AddCaching(opts => opts
-                .UseHybrid("metadata", opts => opts.SQLite.DatabasePath = "metadata.sqlite")
-                .UseInMemory("watchlist")
-                .UseInMemory("plex-graphql"));
+            builder.Services.AddCaching()
+                .UseTiered("metadata", builder => builder
+                    .UseInMemory("metadata-fast", opts =>
+                    {
+                        opts.DefaultExpiration = TimeSpan.FromMinutes(1);
+                    })
+                    .UseSqlite("metadata-slow", (services, name, opts) =>
+                    {
+                        IAppDataSetup appDataSetup = services.GetRequiredService<IAppDataSetup>();
+
+                        opts.DefaultExpiration = TimeSpan.FromHours(4);
+                        opts.DatabasePath = Path.Join(appDataSetup.CacheDirectory, "metadata.sqlite");
+                    }))
+                .UseInMemory("watchlist");
 
             builder.Services.AddFetcharr();
             builder.Services.AddControllers();

@@ -8,6 +8,10 @@
   <!-- Global packages -->
 
   <ItemGroup>
+    <PackageVersion Include="Cachedeer" Version="0.1.0-rc5" />
+    <PackageVersion Include="Cachedeer.InMemory" Version="0.1.0-rc5" />
+    <PackageVersion Include="Cachedeer.Sqlite" Version="0.1.0-rc5" />
+    <PackageVersion Include="Cachedeer.Tiered" Version="0.1.0-rc5" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
@@ -18,8 +22,6 @@
     <PackageVersion Include="GitVersion.MsBuild" Version="6.0.0" />
     <PackageVersion Include="GraphQL.Client" Version="6.1.0" />
     <PackageVersion Include="GraphQL.Client.Serializer.SystemTextJson" Version="6.1.0" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.7" />
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />

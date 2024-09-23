@@ -1,6 +1,7 @@
 using System.Text.Json;
 
-using Fetcharr.Cache.Core;
+using Cachedeer;
+
 using Fetcharr.Models.Configuration;
 using Fetcharr.Provider.Plex.Models;
 

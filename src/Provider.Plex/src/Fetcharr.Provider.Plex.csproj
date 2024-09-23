@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Cache\Core\src\Fetcharr.Cache.Core.csproj" />
     <ProjectReference Include="..\..\Provider\src\Fetcharr.Provider.csproj" />
     <ProjectReference Include="..\..\Shared\src\Fetcharr.Shared.csproj" />
     <ProjectReference Include="..\..\Models\src\Fetcharr.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Cachedeer" />
     <PackageReference Include="GraphQL.Client" />
     <PackageReference Include="GraphQL.Client.Serializer.SystemTextJson" />
   </ItemGroup>

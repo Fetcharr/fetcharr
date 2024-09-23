@@ -1,4 +1,5 @@
-using Fetcharr.Cache.Core;
+using Cachedeer;
+
 using Fetcharr.Models.Configuration;
 using Fetcharr.Provider.Plex.Models;
 using Fetcharr.Shared.GraphQL;
@@ -17,7 +18,7 @@ namespace Fetcharr.Provider.Plex.Clients
     /// </summary>
     public class PlexGraphQLClient(
         IOptions<FetcharrConfiguration> configuration,
-        [FromKeyedServices("plex-graphql")] ICachingProvider cachingProvider)
+        [FromKeyedServices("watchlist")] ICachingProvider watchlistCachingProvider)
     {
         /// <summary>
         ///   Gets the GraphQL endpoint for Plex.
@@ -40,7 +41,7 @@ namespace Fetcharr.Provider.Plex.Clients
         {
             string cacheKey = $"friend-watchlist-{userId}";
 
-            CacheValue<IEnumerable<WatchlistMetadataItem>> cachedResponse = await cachingProvider
+            CacheItem<IEnumerable<WatchlistMetadataItem>> cachedResponse = await watchlistCachingProvider
                 .GetAsync<IEnumerable<WatchlistMetadataItem>>(cacheKey);
 
             if(cachedResponse.HasValue)
@@ -86,7 +87,7 @@ namespace Fetcharr.Provider.Plex.Clients
 
             IEnumerable<WatchlistMetadataItem> watchlistItems = response.Data.User.Watchlist.Nodes;
 
-            await cachingProvider.SetAsync(cacheKey, watchlistItems, expiration: TimeSpan.FromHours(4));
+            await watchlistCachingProvider.SetAsync(cacheKey, watchlistItems, expiration: TimeSpan.FromHours(4));
             return watchlistItems;
         }
 
@@ -95,7 +96,7 @@ namespace Fetcharr.Provider.Plex.Clients
         /// </summary>
         public async Task<IEnumerable<PlexFriendUser>> GetAllFriendsAsync()
         {
-            CacheValue<IEnumerable<PlexFriendUser>> cachedResponse = await cachingProvider
+            CacheItem<IEnumerable<PlexFriendUser>> cachedResponse = await watchlistCachingProvider
                 .GetAsync<IEnumerable<PlexFriendUser>>("friends-list");
 
             if(cachedResponse.HasValue)
@@ -124,7 +125,7 @@ namespace Fetcharr.Provider.Plex.Clients
 
             IEnumerable<PlexFriendUser> friends = response.Data.Friends.Select(v => v.User);
 
-            await cachingProvider.SetAsync("friends-list", friends, expiration: TimeSpan.FromHours(4));
+            await watchlistCachingProvider.SetAsync("friends-list", friends, expiration: TimeSpan.FromHours(4));
             return friends;
         }
     }

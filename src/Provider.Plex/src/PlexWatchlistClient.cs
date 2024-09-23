@@ -1,6 +1,7 @@
 using System.Net;
 
-using Fetcharr.Cache.Core;
+using Cachedeer;
+
 using Fetcharr.Models.Configuration;
 using Fetcharr.Provider.Plex.Models;
 
@@ -48,7 +49,7 @@ namespace Fetcharr.Provider.Plex
 
             if(response.StatusCode == (int) HttpStatusCode.NotModified)
             {
-                CacheValue<IEnumerable<WatchlistMetadataItem>> cacheValue =
+                CacheItem<IEnumerable<WatchlistMetadataItem>> cacheValue =
                     await cachingProvider.GetAsync<IEnumerable<WatchlistMetadataItem>>("watchlist");
 
                 // If Plex returned NotModified, but the cache is empty, it must've been evicted

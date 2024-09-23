@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Cachedeer" />
+    <PackageReference Include="Cachedeer.InMemory" />
+    <PackageReference Include="Cachedeer.Sqlite" />
+    <PackageReference Include="Cachedeer.Tiered" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="Serilog" />
     <PackageReference Include="Serilog.AspNetCore" />
@@ -23,7 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Models\src\Fetcharr.Models.csproj" />
     <ProjectReference Include="..\..\Configuration\src\Fetcharr.Configuration.csproj" />
-    <ProjectReference Include="..\..\Cache\Hybrid\src\Fetcharr.Cache.Hybrid.csproj" />
     <ProjectReference Include="..\..\Provider.Plex\src\Fetcharr.Provider.Plex.csproj" />
     <ProjectReference Include="..\..\Provider.Radarr\src\Fetcharr.Provider.Radarr.csproj" />
     <ProjectReference Include="..\..\Provider.Sonarr\src\Fetcharr.Provider.Sonarr.csproj" />
