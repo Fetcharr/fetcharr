@@ -17,7 +17,7 @@ namespace Fetcharr.Provider.Plex.Clients
     /// </summary>
     public class PlexGraphQLClient(
         IOptions<FetcharrConfiguration> configuration,
-        [FromKeyedServices("plex-graphql")] ICachingProvider cachingProvider)
+        [FromKeyedServices("watchlist")] ICachingProvider cachingProvider)
     {
         /// <summary>
         ///   Gets the GraphQL endpoint for Plex.
