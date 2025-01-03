@@ -28,6 +28,8 @@ partial class Build : NukeBuild
 
     Target BuildImage => _ => _
         .Description("Builds the Docker image of Fetcharr, and optionally pushes it to GHCR.\n")
+        .OnlyWhenDynamic(() => OperatingSystem.IsLinux())
+        .WhenSkipped(DependencyBehavior.Execute)
         .DependsOn(AssertDockerPush)
         .DependsOn(Test)
         .DependsOn(Format)

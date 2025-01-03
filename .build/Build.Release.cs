@@ -28,10 +28,20 @@ partial class Build : NukeBuild
                 MakeLatest = MakeLatestQualifier.True,
             };
 
-            Release release = await GitHubTasks.GitHubClient.Repository.Release.Create(
-                this.Repository.GetGitHubOwner(),
-                this.Repository.GetGitHubName(),
-                newRelease);
+            Release release;
+
+            try {
+                release = await GitHubTasks.GitHubClient.Repository.Release.Get(
+                    this.Repository.GetGitHubOwner(),
+                    this.Repository.GetGitHubName(),
+                    this.VersionTag);
+            }
+            catch {
+                release = await GitHubTasks.GitHubClient.Repository.Release.Create(
+                    this.Repository.GetGitHubOwner(),
+                    this.Repository.GetGitHubName(),
+                    newRelease);
+            }
 
             foreach (AbsolutePath asset in AssetsDirectory.GlobFiles($"fetcharr-{VersionTag}-*.zip"))
             {
