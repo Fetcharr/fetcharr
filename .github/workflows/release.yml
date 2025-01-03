@@ -10,7 +10,10 @@ on:
 jobs:
   release:
     name: Build and release
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     permissions:
       packages: write
       contents: write
