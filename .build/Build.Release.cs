@@ -30,20 +30,22 @@ partial class Build : NukeBuild
 
             Release release;
 
-            try {
+            try
+            {
                 release = await GitHubTasks.GitHubClient.Repository.Release.Get(
                     this.Repository.GetGitHubOwner(),
                     this.Repository.GetGitHubName(),
                     this.VersionTag);
             }
-            catch {
+            catch
+            {
                 release = await GitHubTasks.GitHubClient.Repository.Release.Create(
                     this.Repository.GetGitHubOwner(),
                     this.Repository.GetGitHubName(),
                     newRelease);
             }
 
-            foreach (AbsolutePath asset in AssetsDirectory.GlobFiles($"fetcharr-{VersionTag}-*.zip"))
+            foreach(AbsolutePath asset in AssetsDirectory.GlobFiles($"fetcharr-{VersionTag}-*.zip"))
             {
                 ReleaseAssetUpload assetUpload = new()
                 {

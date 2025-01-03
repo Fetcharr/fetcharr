@@ -9,10 +9,12 @@ partial class Build : NukeBuild
     Target Publish => _ => _
         .Description("Publishes the .NET projects and builds them as single-file applications\n")
         .DependsOn(Compile)
-        .Executes(() => {
+        .Executes(() =>
+        {
             string runtimeIdentifier = "win-x64";
 
-            if(OperatingSystem.IsLinux()) {
+            if(OperatingSystem.IsLinux())
+            {
                 runtimeIdentifier = "linux-x64";
             }
 
