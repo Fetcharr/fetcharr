@@ -47,11 +47,15 @@ partial class Build : NukeBuild
 
             foreach(AbsolutePath asset in AssetsDirectory.GlobFiles($"fetcharr-{VersionTag}-*.zip"))
             {
+                Serilog.Log.Information("Uploading asset '{Asset}' to release...", asset.Name);
+
+                using FileStream assetStream = File.OpenRead(asset);
+
                 ReleaseAssetUpload assetUpload = new()
                 {
                     FileName = asset.Name,
                     ContentType = "application/zip",
-                    RawData = File.OpenRead(asset)
+                    RawData = assetStream
                 };
 
                 await GitHubTasks.GitHubClient.Repository.Release.UploadAsset(
