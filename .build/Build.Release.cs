@@ -36,6 +36,8 @@ partial class Build : NukeBuild
                     this.Repository.GetGitHubOwner(),
                     this.Repository.GetGitHubName(),
                     this.VersionTag);
+
+                Serilog.Log.Information("Found existing release for version {Version}", this.VersionTag);
             }
             catch
             {
@@ -43,6 +45,8 @@ partial class Build : NukeBuild
                     this.Repository.GetGitHubOwner(),
                     this.Repository.GetGitHubName(),
                     newRelease);
+
+                Serilog.Log.Information("Create new release for version {Version}", this.VersionTag);
             }
 
             foreach(AbsolutePath asset in AssetsDirectory.GlobFiles($"fetcharr-{VersionTag}-*.zip"))
