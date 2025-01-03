@@ -58,6 +58,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and release
-        run: ./build.cmd Release --include-integration-tests
+        run: ./build.cmd Release --include-integration-tests --skip BuildImage
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
