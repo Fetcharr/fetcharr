@@ -31,7 +31,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-/src/Chart.sln
+/assets/
 
 # Visual Studio (Code) configuration folders
 .vs/
