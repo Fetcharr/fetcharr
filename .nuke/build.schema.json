@@ -97,6 +97,7 @@
               "Clean",
               "Compile",
               "Format",
+              "Publish",
               "Release",
               "Restore",
               "Test"
@@ -114,6 +115,7 @@
               "Clean",
               "Compile",
               "Format",
+              "Publish",
               "Release",
               "Restore",
               "Test"

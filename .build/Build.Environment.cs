@@ -18,6 +18,12 @@ partial class Build : NukeBuild
 
     private AbsolutePath SolutionFilePath => SourceDirectory / "Fetcharr.sln";
 
+    private AbsolutePath ApiProjectDirectory => SourceDirectory / "API" / "src";
+
+    private AbsolutePath AssetsDirectory => RootDirectory / "assets";
+
+    private AbsolutePath PublishOutputDirectory => AssetsDirectory / "publish";
+
     [GitVersion(Framework = "net8.0", NoFetch = true)]
     readonly GitVersion GitVersion;
 
