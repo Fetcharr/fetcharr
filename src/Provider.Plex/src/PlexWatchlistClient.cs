@@ -21,7 +21,7 @@ namespace Fetcharr.Provider.Plex
         ILogger<PlexWatchlistClient> logger)
     {
         private readonly FlurlClient _client =
-            new FlurlClient("https://metadata.provider.plex.tv/library/sections/watchlist/")
+            new FlurlClient("https://discover.provider.plex.tv/library/sections/watchlist/")
                 .WithHeader("X-Plex-Token", configuration.Value.Plex.ApiToken)
                 .WithHeader("X-Plex-Client-Identifier", "fetcharr")
                 .AllowHttpStatus((int) HttpStatusCode.NotModified);
