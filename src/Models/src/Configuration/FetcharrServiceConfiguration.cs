@@ -82,6 +82,6 @@ namespace Fetcharr.Models.Configuration
         ///   Gets or sets any tags which should be added to any items added by Fetcharr.
         /// </summary>
         [YamlMember(Alias = "tags")]
-        public bool Tags { get; set; } = true;
+        public List<string> Tags { get; set; } = [];
     }
 }

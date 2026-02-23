@@ -142,6 +142,7 @@ namespace Fetcharr.Provider.Radarr
 
             RadarrRootFolder rootFolder = await this.DetermineRootFolderAsync(options);
             RadarrQualityProfile qualityProfile = await this.DetermineQualityProfileAsync(options);
+            List<int> tags = await this.EnsureTagsExistsAsync();
 
             object requestBody = new
             {
@@ -162,7 +163,7 @@ namespace Fetcharr.Provider.Radarr
                     _ => throw new NotSupportedException()
                 },
                 monitored = options.Monitored ?? configuration.Monitored,
-                tags = Array.Empty<int>(),
+                tags,
                 addOptions = new
                 {
                     ignoreEpisodesWithFiles = true,
@@ -269,6 +270,31 @@ namespace Fetcharr.Provider.Radarr
             return qualityProfiles.FirstOrDefault(v =>
                 v.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
                     ?? throw new InvalidOperationException($"[{this.Name}] No quality profile defined.");
+        }
+
+        /// <summary>
+        ///   Ensures that the tags specified in the configuration exist on the instance, and sets <see cref="TagIDs"/>
+        ///   to the IDs of those tags.
+        /// </summary>
+        private async Task<List<int>> EnsureTagsExistsAsync()
+        {
+            List<int> IDs = [];
+
+            foreach(string tag in configuration.Tags)
+            {
+                IFlurlResponse createdTagResponse = await this._client
+                    .Request("/api/v3/tag")
+                    .PostJsonAsync(new
+                    {
+                        label = tag,
+                    });
+
+                IDs.Add((await createdTagResponse.GetJsonAsync<RadarrTag>()).Id);
+
+                logger.LogDebug("Added tag '{Tag}' to Radarr instance '{Instance}'.", tag, this.Name);
+            }
+
+            return IDs;
         }
     }
 }

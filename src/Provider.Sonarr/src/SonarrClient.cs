@@ -104,6 +104,7 @@ namespace Fetcharr.Provider.Sonarr
 
             SonarrRootFolder rootFolder = await this.DetermineRootFolderAsync(options);
             SonarrQualityProfile qualityProfile = await this.DetermineQualityProfileAsync(options);
+            List<int> tags = await this.EnsureTagsExistsAsync();
 
             object requestBody = new
             {
@@ -117,7 +118,7 @@ namespace Fetcharr.Provider.Sonarr
                 monitorNewItems = (options.MonitorNewItems ?? configuration.MonitorNewItems) ? "all" : "none",
                 seriesType = options.SeriesType ?? configuration.SeriesType,
                 seasons = Array.Empty<int>(),
-                tags = Array.Empty<int>(),
+                tags,
                 addOptions = new
                 {
                     ignoreEpisodesWithFiles = true,
@@ -230,6 +231,31 @@ namespace Fetcharr.Provider.Sonarr
             return qualityProfiles.FirstOrDefault(v =>
                 v.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
                     ?? throw new InvalidOperationException($"[{this.Name}] No quality profile defined.");
+        }
+
+        /// <summary>
+        ///   Ensures that the tags specified in the configuration exist on the instance, and sets <see cref="TagIDs"/>
+        ///   to the IDs of those tags.
+        /// </summary>
+        private async Task<List<int>> EnsureTagsExistsAsync()
+        {
+            List<int> IDs = [];
+
+            foreach(string tag in configuration.Tags)
+            {
+                IFlurlResponse createdTagResponse = await this._client
+                    .Request("/api/v3/tag")
+                    .PostJsonAsync(new
+                    {
+                        label = tag,
+                    });
+
+                IDs.Add((await createdTagResponse.GetJsonAsync<SonarrTag>()).Id);
+
+                logger.LogDebug("Added tag '{Tag}' to Sonarr instance '{Instance}'.", tag, this.Name);
+            }
+
+            return IDs;
         }
     }
 }
