@@ -85,6 +85,10 @@ sonarr:
     ## Default: 3
     # short_series_threshold: 1
 
+    ## Adds the given tags to any items added by Fetcharr.
+    ## Default: []
+    # tags: []
+
   ## Example of a Sonarr instance, exclusively for anime.
   # sonarr_anime:
   #   base_url: http://localhost:8989
@@ -156,6 +160,10 @@ radarr:
     ## Available values: [None, MovieOnly, MovieAndCollection]
     ## Default: MovieOnly
     # monitored_items: MovieAndCollection
+
+    ## Adds the given tags to any items added by Fetcharr.
+    ## Default: []
+    # tags: []
 
   ## Example of a Radarr instance, exclusively for anime.
   # radarr_anime:
