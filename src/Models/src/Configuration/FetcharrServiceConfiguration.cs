@@ -77,5 +77,11 @@ namespace Fetcharr.Models.Configuration
         /// </summary>
         [YamlMember(Alias = "update_existing")]
         public bool UpdateExisting { get; set; } = true;
+
+        /// <summary>
+        ///   Gets or sets any tags which should be added to any items added by Fetcharr.
+        /// </summary>
+        [YamlMember(Alias = "tags")]
+        public bool Tags { get; set; } = true;
     }
 }
